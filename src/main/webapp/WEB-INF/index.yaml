@@ -1,0 +1,7 @@
+indexes:
+
+- kind: Billar
+  properties:
+  - name: fecha
+  - name: usuario
+  - name: fin
