@@ -4,75 +4,14 @@
 <html>
 <head>
 <!-- Bootstrap -->
-<link href="<%=request.getContextPath()%>/css1/bootstrap.min.css"
-	rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css1/dataTables.bootstrap.css"
-	rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="<%=request.getContextPath()%>/js1/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js1/jquery.dataTables.min.js"></script>
-<script src="<%=request.getContextPath()%>/js1/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/js1/dataTables.bootstrap.js"></script>
 <script src="<%=request.getContextPath()%>/js1/timer.jquery.js"></script>
 
-<style>
-body {
-	font-size: 11px;
-}
-
-h1 {
-	font-size: 18px;
-}
-
-#listaProducto {
-	font-size: 11px;
-}
-
-#listaProductoBarra {
-	font-size: 11px;
-}
-
-.content {
-	margin-top: 80px;
-}
-
-.card {
-	padding: 5px;
-	position: relative;
-	display: -ms-flexbox;
-	display: -webkit-box;
-	display: flex;
-	-ms-flex-direction: column;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	flex-direction: column;
-	min-width: 0;
-	word-wrap: break-word;
-	background-color: #fff;
-	background-clip: border-box;
-	border: 1px solid rgba(0, 0, 0, 0.125);
-	border-radius: 0.25rem;
-}
-
-.mb-2, .my-2 {
-	margin-bottom: 0.5rem !important;
-}
-
-.card-title {
-	background-color: orange;
-	background-image:url("https://cdn.pixabay.com/photo/2015/11/26/19/19/ball-1064402_960_720.png");
-	padding: 10px;
-	margin: 0px;
-	border-radius: 4px;
-	float: right;
-	font-size: 20px;
-	font-weight: bold;
-	background-size: 50px 50px;
-	background-repeat: no-repeat;
-	text-align: left;
-	
-}
-
-
+<style type="text/css">
+body{
+		font-size:12px;
+	}
 </style>
 </head>
 <body>
@@ -80,44 +19,66 @@ h1 {
 	<%-- 		<jsp:include page="nav.jsp" /> --%>
 	<!-- 	</nav> -->
 
-	<div>
-		<nav class="navbar navbar-default bg-success navbar-expand-lg">
-			<div class="container">
 				<jsp:include page="nav.jsp" />
-			</div>
-		</nav>
-	</div>
+			
 	<div class="container">
 	
 		<div class="row">
-			<%
+		
+		<%
 				List<Entity> billarMesaList = (List<Entity>) request.getAttribute("billarmesalist");
 				for (Entity e : billarMesaList) {
 					
 			%>
-			
 			<div class="col-md-2" >
-			<form method="post" action="./result" class="form-horizontal">
-			
-				<article class="card mb-2" style="max-width: 20rem;" >
-					<p class="card-title"><span id="mesanumeroorden<%=e.getProperty("id")%>" style="background-color: #ffffff; border-radius: 20px; padding: 2px 5px 0px 5px; margin-right: 20px;" ><%=e.getProperty("numero")%></span>
-					<span id="hora<%=e.getProperty("id")%>" >00</span><span id="minuto<%=e.getProperty("id")%>">:00:</span><span id="segundo<%=e.getProperty("id")%>">00</span></p>
-					
-					<!---->
-					<div class="card-body" id="<%=e.getProperty("id")%>">
-						<p style="display:none">
-							Mesa: <input type="text" name="mesa" id="mesa<%=e.getProperty("id")%>" value="<%=e.getProperty("id")%>" class="form-control" readonly="readonly">
+				<div class="card text-white bg-success mb-3" style="max-width: 18rem;" id="<%=e.getProperty("id")%>">
+	  				<div class="card-header">
+	  				<h5>
+	  					<span class="badge badge-warning" id="mesanumeroorden<%=e.getProperty("id")%>"><%=e.getProperty("numero")%></span>
+						<span id="hora<%=e.getProperty("id")%>" >00</span><span id="minuto<%=e.getProperty("id")%>">:00:</span><span id="segundo<%=e.getProperty("id")%>">00</span>
+					</h5>
+	  				
+	  				</div>
+	  				<div class="card-body" style="padding:2px;">
+			  		<form class="form-inline" method="post" action="./result">
+  						<div class="input-group card-title">
+                			<div class="input-group-btn">
+                  				<button type="button" class="btn btn-primary start-timer-btn btn-sm" id="<%=e.getProperty("id")%>">Inicio &nbsp;</button>
+                			</div>
+                			<input type="text" name="horainicio" id="horainicio<%=e.getProperty("id")%>" value="<%=e.getProperty("horainicio")%>" class="form-control form-control-sm" readonly>
+              			</div>
+  						<div class="input-group card-title">
+                			<div class="input-group-btn">
+                  				<button type="button" class="btn btn-warning btn-sm start-horaactual-btn" id="<%=e.getProperty("id")%>">Final &nbsp; &nbsp; </button>
+                			</div>
+                			<input type="text" id="horaactual<%=e.getProperty("id")%>" class="form-control form-control-sm" readonly>
+              			</div>
+              			<div class="input-group card-title">
+                			<div class="input-group-btn">
+                  				<button type="submit" name="save" class="btn btn-danger btn-sm">Guardar</button>
+                			</div>
+                			<input type="text" id="total<%=e.getProperty("id")%>" class="form-control form-control-sm" readonly>
+              			</div>
+              			<div class="input-group card-title">
+                			<input type="text" name="taco" id="taco<%=e.getProperty("id")%>" value="<%=e.getProperty("taco")%>" class="form-control form-control-sm"  readonly>
+                    		<span class="input-group-btn">
+                      			<button type="button" class="btn btn-danger btn-sm start-tacos" id="<%=e.getProperty("id")%>">&nbsp;-&nbsp;</button>
+                      			<button type="button" class="btn btn-warning btn-sm start-tacos" id="<%=e.getProperty("id")%>">+</button>
+                    		</span>
+              			</div>
+              			
+              			<p style="display:none">
+							Mesa: <input type="text" name="mesa" id="mesa<%=e.getProperty("id")%>" value="<%=e.getProperty("id")%>" class="form-control " readonly="readonly">
 						</p>
 						<!---->
-						<p>
+						<p style="display:none">
 							Estado: <input type="text" name="estado" id="estado<%=e.getProperty("id")%>" value="<%=e.getProperty("estado")%>" class="form-control" readonly="readonly">
 						</p>
 						<p style="display:none">
 							Codigo: <input type="text" name="codigo" id="codigo<%=e.getProperty("id")%>" value="<%=e.getProperty("codigo")%>" class="form-control" readonly="readonly">
 						</p>
-						
 						<p style="display:none">
-							Inicio: <input type="text" name="inicio" id="inicio<%=e.getProperty("id")%>" value="<%=e.getProperty("inicio")%>" class="form-control" readonly="readonly">
+							inicio:<input type="text" name="inicio" id="inicio<%=e.getProperty("id")%>" value="<%=e.getProperty("inicio")%>" class="form-control form-control-sm" readonly>
 						</p>
 						<p style="display:none">
 							Tiempo: <input type="text" name="tiempo" id="tiempo<%=e.getProperty("id")%>" value="0 sec" class="form-control" readonly="readonly">
@@ -125,29 +86,19 @@ h1 {
 						<p style="display:none">
 							Precio S/.<input type="text" name="precio" id="precio<%=e.getProperty("id")%>" value="<%=e.getProperty("precio")%>" class="form-control" readonly="readonly">
 						</p>
-						<p >
-							Taco: <input type="text" name="taco" id="taco<%=e.getProperty("id")%>" value="<%=e.getProperty("taco")%>" class="form-control" readonly="readonly">
-										<button type="button" class="btn btn-primary start-tacos" id="<%=e.getProperty("id")%>" >+</button>
-										<button type="button" class="btn btn-danger start-tacos" id="<%=e.getProperty("id")%>">-</button>
-						</p>
-						<a  class="btn btn-primary start-timer-btn"	id="<%=e.getProperty("id")%>" >Iniciar</a>
-						<input type="submit" name="save" class="btn btn-sm btn-danger" value="Terminar">
-
+              			
+					</form>
 					</div>
-				</article>
-							</form>
-				
+				</div>
 			</div>
 			<%
 				}
 			%>
-
 		</div>
+	
+		
 		
 	</div>
-
-	<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-	<%-- 	<script src="<%=request.getContextPath()%>/js1/bootstrap.min.js"></script> --%>
 
 </body>
 </html>
@@ -176,6 +127,7 @@ function initializeClock(id) {
 		var estado = $("#estado"+id).val();
 		if (estado == "libre") {
 			$("#inicio"+id).val(tiempoF);
+			$("#horainicio"+id).val(horas+':'+minutos+':'+segundos);
 			var t = getTimeRemaining(tiempoF);
 		}else{
 			var inicio = $("#inicio"+id).val();
@@ -193,7 +145,6 @@ function initializeClock(id) {
 	var timeinterval = setInterval(updateClock, 1000);
 	
 }
-
 function getTimeRemaining(endtime) {
 		var t =  Date.parse(new Date()) - Date.parse(endtime);
 		var seconds = Math.floor((t / 1000) % 60);
@@ -214,7 +165,6 @@ function getTimeRemaining(endtime) {
 
 function registrar(id) {
 	//var id = $(this).attr("id");
-
 	$.ajax({
 		url:'/billar/alquilar',
 		type:'POST',
@@ -235,14 +185,10 @@ function registrar(id) {
 			$('#codigo' + id).val(response[0]);
 			$('#estado' + id).val("ocupado");
 		}
-		})
+	})
 }
-
-
-
 function tacos(id, operacion) {
 	//var id = $(this).attr("id");
-
 	var x = $("#taco"+id).val();
 	
 		if (operacion == "+"){
@@ -276,87 +222,60 @@ function tacos(id, operacion) {
 		})
 }
 
-
-
-
-
-
-	$(document).ready(
-			function() {
-				//var id = $(".card-body").attr("id");
-				$(".card-body").each(function(){
+$(document).ready(function() {
+				$(".card").each(function(){
 					var id = $(this).attr('id');
 					var estado = $("#estado"+id).val(); 
 					if (estado == "ocupado") {
-						console.log(id);
 						initializeClock(id);
 					}
 					
 				});
- 				//var id = $("#5915372557434880").attr("id");
- 				//initializeClock(id);
-				//console.log(id);
 				
 				$(".start-timer-btn").on('click', function() {
 					var id = $(this).attr("id");
 					var estado = $("#estado"+id).val();
-					$("#taco"+id).val(0);
 					if (estado == "libre") {
+						$("#taco"+id).val(0);
 						initializeClock(id);
 						registrar(id)
 					}
 				
-
 				});
-				
-				
-				
-				
 				
 				
 				$(".start-tacos").on('click', function() {
 					var id = $(this).attr("id");
 					var signo = $(this).text();
-					console.log("Hola " + $(this).text());
 					tacos(id,signo)
 				});
 				
-				
-				
-				
-				
+				$(".start-horaactual-btn").on('click', function() {
+					var id = $(this).attr("id");
+					var fecha= new Date();
+					var horas= fecha.getHours();
+					var minutos = fecha.getMinutes();
+					var segundos = fecha.getSeconds();
+					$("#horaactual"+id).val(horas+':'+minutos+':'+segundos);
 					
-			});
+					$.ajax({
+						url:'/billar/total',
+						type:'POST',
+						dataType:'JSON',
+						data:{ 
+							codigo:$("#codigo"+id).val(),
+							tiempo:$("#tiempo"+id).val(),
+							taco:$("#taco"+id).val(),
+						},
+						 
+						success:function(response){
+							var total = parseFloat(response).toFixed(2);
+							$('#total'+id).val('S/.'+total);
+						}
+					})
+					
+				});
 				
-				
-				
-				
-				
-// 				 $(".start-timer-btn").on('click', function() {
-// 					 var id = $(this).attr("id");
-
-// 						$.ajax({
-// 							url:'/billar/alquilar',
-// 							type:'POST',
-// 							dataType:'JSON',
-// 							data:{ 
-// 								mesa:$("#mesa"+id).val(),
-// 								inicio:$("#inicio"+id).val(),
-// 								tiempo:$("#tiempo"+id).val(),
-// 								precio:$("#precio"+id).val(),
-// 								taco:$("#taco"+id).val(),
-// 								estado:"ocupado"
-// 							},
-							 
-// 							success:function(response){
-// 								console.log("Exito");
-// 								var codigo = document.getElementById('codigo' + id);
-// 								$('#codigo' + id).val(response[0]);
-// 							}
-							
-// 						});	     
-// 			     });
-			     
-
-//			})
+});
+	
 </script>

@@ -4,12 +4,13 @@
 <html>
 <head>
 <!-- Bootstrap -->
-	<link href="<%=request.getContextPath() %>/css1/bootstrap.min.css" rel="stylesheet">
-	<link href="<%=request.getContextPath() %>/css1/dataTables.bootstrap.css" rel="stylesheet" />
-	<script src="<%=request.getContextPath() %>/js1/jquery.min.js"></script>
-	<script src="<%=request.getContextPath() %>/js1/jquery.dataTables.min.js"></script>
-	<script src="<%=request.getContextPath() %>/js1/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath() %>/js1/dataTables.bootstrap.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+	
 	<script>
 	$(document).ready(function() {
    		$('#billareporte').DataTable(); 
@@ -27,33 +28,22 @@
 	</script>
 
 
-<style>
+<style type="text/css">
 	body{
-		font-size: 11px;
-	}
-	h1{
-		font-size: 18px;
-	}
-	#listaProducto{
-		font-size: 11px;
-	}
-	.content {
-			margin-top: 80px;
+		font-size: 12px;
 	}
 </style>
 
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
 		<jsp:include page="nav.jsp" />
-	</nav>
 	<div class="container">
 		<div class="content">
-			<h1>Reporte: S/. <span id="total"></span></h1>
+			<h3>Reporte: S/. <span id="total"></span></h3>
 			<hr />
-<!-- 			<div class="table-responsive"> -->
+ 		<div class="col-sm-12">
 				<table id="billareporte"
-					class="table table-striped table-hover table-bordered"
+				class="table table-bordered table-hover dataTable"
 					style="width: 100%">
 					<thead>
 
@@ -93,7 +83,7 @@
 					</tbody>
 				</table>
 		</div>
-		
+		</div>
 	</div>
 </body>
 </html>

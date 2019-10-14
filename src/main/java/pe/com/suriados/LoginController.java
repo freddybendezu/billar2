@@ -61,7 +61,7 @@ public class LoginController
         newSession.setAttribute("validado", true);
         
         //-----------------
-        
+        //return "redirect:../billar/list";
         return "frmBillarMesaAdd";
       }
       System.out.println("Password incorrecto");

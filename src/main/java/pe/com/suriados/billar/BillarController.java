@@ -67,6 +67,13 @@ public class BillarController {
 					temporal.setProperty("numero", e.getProperty("numero"));
 					temporal.setProperty("codigo", billar.getKey().getId());
 					temporal.setProperty("inicio", billar.getProperty("inicio"));
+					
+					
+					SimpleDateFormat formatoEntrada = new SimpleDateFormat("MMMM yyyy d HH:mm:ss", Locale.ENGLISH);
+					SimpleDateFormat formatoSalida = new SimpleDateFormat("HH:mm:ss");
+					Date   date       = formatoEntrada.parse (billar.getProperty("inicio").toString()); 
+					String horainicio = formatoSalida.format(date);
+					temporal.setProperty("horainicio", horainicio);
 					temporal.setProperty("tiempo", billar.getProperty("tiempo"));
 					temporal.setProperty("precio", billar.getProperty("preciohoranormal"));
 					temporal.setProperty("taco", billar.getProperty("taco"));
@@ -76,6 +83,7 @@ public class BillarController {
 					temporal.setProperty("numero", e.getProperty("numero"));
 					temporal.setProperty("codigo", "");
 					temporal.setProperty("inicio", "");
+					temporal.setProperty("horainicio", "");
 					temporal.setProperty("tiempo", "");
 					temporal.setProperty("precio", "");
 					temporal.setProperty("taco", "");
@@ -129,6 +137,14 @@ public class BillarController {
 			billar.setProperty("tiempo", tiempo);
 			billar.setProperty("fin", "");
 			billar.setProperty("inicio", inicio);
+			
+			SimpleDateFormat formatoEntrada = new SimpleDateFormat("MMMM yyyy d HH:mm:ss", Locale.ENGLISH);
+			SimpleDateFormat formatoSalida = new SimpleDateFormat("HH:mm:ss");
+			Date   date       = formatoEntrada.parse (inicio); 
+			String horainicio = formatoSalida.format(date);
+			billar.setProperty("horainicio", horainicio);
+			
+			
 			billar.setProperty("minutosnormal", "");
 			billar.setProperty("minutosincremento", "");
 			billar.setProperty("minutostotal", "");
@@ -264,6 +280,75 @@ public class BillarController {
 		return "frmBillarResult";
 	}
 
+	
+
+	@RequestMapping(value = { "/total" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
+	@ResponseBody
+	public String total(HttpServletRequest request, ModelMap model) {
+		DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
+		simbolos.setDecimalSeparator('.');
+		DecimalFormat decimalFormato = new DecimalFormat("####0.0",simbolos);
+		
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		String response = null;
+		Key key = KeyFactory.createKey("Billar", Long.parseLong(request.getParameter("codigo")));
+		try {
+			Entity billar = datastore.get(key);
+
+			key = KeyFactory.createKey("Billarprecio", Long.parseLong(billar.getProperty("mesanumero").toString()));
+			Entity billarprecio = datastore.get(key);
+			// System.out.println("precio: " + billarprecio.getProperty("h1"));
+			String tiempo1 = request.getParameter("tiempo");
+			String horainicio = billar.getProperty("inicio").toString();
+			String preciohoranormal = billarprecio.getProperty("precionormal").toString();
+			int horaInicioNormalMesa = Integer.parseInt(billarprecio.getProperty("horainicionormal").toString());
+			int horaFinalNormalMesa = Integer.parseInt(billarprecio.getProperty("horafinnormal").toString());
+			String montoIncrementoMesa = billarprecio.getProperty("incremento").toString();
+			String numeroHorasParaDescuento = billarprecio.getProperty("numerohorasdescuento").toString();
+			String porcentajeDescuento = billarprecio.getProperty("porcentajedescuento").toString();
+			String precioUnitarioTaco = billarprecio.getProperty("preciounitariotaco").toString();
+			String taco = request.getParameter("taco");
+			
+			Date tiempocurso = new SimpleDateFormat("HH:mm:ss").parse(tiempo1);			
+			Date fechaInicio = new SimpleDateFormat("MMMMM yyyy dd HH:mm:ss", new Locale("en")).parse(horainicio);
+
+			
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			ZonedDateTime fechaActual = ZonedDateTime.now(ZoneId.of("America/Lima")); 
+			
+			
+			List<String> res = calcularMontos(tiempocurso.getHours()+"", tiempocurso.getMinutes()+"", fechaInicio, taco, precioUnitarioTaco,
+					preciohoranormal, porcentajeDescuento, numeroHorasParaDescuento, montoIncrementoMesa,
+					horaInicioNormalMesa, horaFinalNormalMesa);
+			
+			billar.setProperty("tiempo", tiempo1);
+			billar.setProperty("fin", fechaActual.format(formatter));
+			//billar.setProperty("inicio", fechaInicio);
+			billar.setProperty("minutosnormal", res.get(0));
+			billar.setProperty("minutosincremento", res.get(1));
+			billar.setProperty("minutostotal", res.get(4));
+			billar.setProperty("montonormal", res.get(2));
+			billar.setProperty("montoincremento", res.get(3));
+			billar.setProperty("montotaco", decimalFormato.format(Double.parseDouble(res.get(5))));
+			billar.setProperty("descuento", decimalFormato.format(Double.parseDouble(res.get(6))));
+			//billar.setProperty("montototal", res.get(7));
+			billar.setProperty("incremento", decimalFormato.format(Double.parseDouble(montoIncrementoMesa)));
+			billar.setProperty("preciotaco", decimalFormato.format(Double.parseDouble(precioUnitarioTaco)));
+			billar.setProperty("taco", taco);
+			billar.setProperty("preciohoranormal", decimalFormato.format(Double.parseDouble(preciohoranormal)));
+			
+			datastore.put(billar);
+			billar.setProperty("montototal", res.get(7));
+			model.addAttribute("billar", billar);
+			response = res.get(7);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return response;
+	}
+	
+	
 	@RequestMapping(value = { "/confirmar" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
 	@ResponseBody
 	public List<String> confirmar(HttpServletRequest request, ModelMap model) {

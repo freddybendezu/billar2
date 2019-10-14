@@ -2,14 +2,14 @@
 <html>
 <head>
 <!-- Bootstrap -->
-<link href="<%=request.getContextPath()%>/css1/bootstrap.min.css"
-	rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css1/style_nav.css"
-	rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
-.content {
-	margin-top: 80px;
-}
+	body{
+		font-size: 12px;
+	}
+
 </style>
 
 <!--[if lt IE 9]>
@@ -18,12 +18,10 @@
 	<![endif]-->
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
 		<jsp:include page="nav.jsp" />
-	</nav>
 	<div class="container">
 		<div class="content">
-			<h1>Billar Precio politica</h1>
+			<h3>Billar Precio politica</h3>
 
 			<%
 				Entity billarPrecio = (Entity) request.getAttribute("billarprecio");
@@ -101,8 +99,6 @@
 			</form>
 		</div>
 	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js1/bootstrap.min.js"></script>
+	
 </body>
 </html>

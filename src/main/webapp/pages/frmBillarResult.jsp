@@ -3,37 +3,19 @@
 <head>
 <meta charset="utf-8" /> 
 <!-- Bootstrap -->
-<link href="<%=request.getContextPath()%>/css1/bootstrap.min.css"
-	rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css1/style_nav.css"
-	rel="stylesheet">
-<style>
-body {
-	font-size: 11px;
-}
-
-.content {
-	margin-top: 80px;
-}
-h4, h5{
-	margin: 5px;
-	padding: 0px;
-}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="<%=request.getContextPath()%>/js1/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js1/timer.jquery.js"></script>
+<style type="text/css">
+	body{
+		font-size: 12px;
+	}
 </style>
 
-<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 </head>
 <body>
-	<div>
-		<nav class="navbar navbar-dark bg-success navbar-expand-lg">
-			<div class="container">
-				<jsp:include page="nav.jsp" />
-			</div>
-		</nav>
-	</div>
+
+	<jsp:include page="nav.jsp" />
 	<%
 		Entity billar = (Entity) request.getAttribute("billar");
 	%>
