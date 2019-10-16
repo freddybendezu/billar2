@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -424,6 +425,17 @@ public class BillarController {
 
 		return new ModelAndView("redirect:billarmesalist");
 	}
+	
+	  @RequestMapping(value={"/delete/{id}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	  public ModelAndView delete(@PathVariable String id, HttpServletRequest request, ModelMap model)
+	  {
+	    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+	    Key key = KeyFactory.createKey("Billarmesa", Long.parseLong(id));
+	    datastore.delete(new Key[] { key });
+	    return new ModelAndView("redirect:../billarmesalist");
+	  }
+	
 
 	private List<String> calcularMontos(String hora, String min, Date horainicio, String taco,
 			String precioUnitarioTaco, String precioUnitarioMesa, String porcentajeDescuento,

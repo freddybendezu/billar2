@@ -37,5 +37,5 @@ public class BillarReportesController {
 		model.addAttribute("billarlist", billarlist);
 		return "frmBillarReporteList";
 	}
-
+	
 }

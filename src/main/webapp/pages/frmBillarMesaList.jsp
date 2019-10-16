@@ -54,7 +54,7 @@
 				<td><%=e.getProperty("estado")%></td>
 				<td>
 					<a href="/billarprecio/update/<%=e.getKey().getId()%>" title="Editar datos" class="btn btn-primary btn-sm">Editar</span></a>
-					<a href="/billarprecio/delete/<%=e.getKey().getId()%>"title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm">Eliminar</span></a>
+					<a href="/billar/delete/<%=e.getKey().getId()%>"title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm">Eliminar</span></a>
 				</td>
 			</tr>			
 			<%
