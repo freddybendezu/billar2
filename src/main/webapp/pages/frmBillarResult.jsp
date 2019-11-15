@@ -26,28 +26,36 @@
 			<table>
 				<tbody>
 					<tr>
-						<td colspan="6" align="center"><span id="in_hi"
-							style="color: blue; font-weight: bold; font-size: 18px;">BILLAR
-								LA MEGA</span></td>
+						<td colspan="6" align="center">
+							<span id="in_hi" style="color: blue; font-weight: bold; font-size: 18px;">BILLAR LA MEGA</span>
+						</td>
 					</tr>
 					<tr>
-						<td colspan="6" align="center"><span id="in_hi"
-							style="color: blue; font-weight: bold; font-size: 11px;">SALON DE JUEGOS
-								</span></td>
+						<td colspan="6" align="center">
+							<span id="in_hi" style="color: blue; font-weight: bold; font-size: 11px;">SALON DE JUEGOS</span>
+						</td>
 					</tr>
 					<tr>
 						<td colspan="6"><hr /></td>
 					</tr>
 					<tr>
-						<td align="right"><h5 style="font-weight: bold;">Inicio:</h5></td>
-						<td align="right"><span id="in_hi"
-							style="color: blue; font-weight: bold; font-size: 14px;"><%=billar.getProperty("inicio")%></span></td>
-					
+					<!--  COLORES -->
+						<td>
+							<span id="in_hi"  style="font-weight: bold;" font-size: 11px;">HORA INICIO: </span>
+						</td>
+						<td colspan="2">
+							<span id="in_hi" style="color: blue; font-weight: bold; font-size: 14px;"><%=billar.getProperty("inicio")%></span>
+						</td>
+						<td>
+							<span id="in_hi"  style="font-weight: bold;" font-size: 11px;">HORA FINAL: </span>
+						</td>
+						<td align="right" colspan="2">
+							<span id="in_hi" style="color: blue; font-weight: bold; font-size: 14px;"><%=billar.getProperty("fin")%></span>
+						</td>
+					</tr>
+					<tr>
 						
-						<td align="right"><h5 style="font-weight: bold;">Final:</h5></td>
-						<td align="right"><span id="in_hf"
-							style="color: blue; font-weight: bold; font-size: 14px;"><%=billar.getProperty("fin")%></span></td>
-						<td align="right"><h5 style="font-weight: bold;">Duracion:</h5></td>
+						<td><h5 style="font-weight: bold;">Duracion:</h5></td>
 						<td align="right"><span id="in_tt"
 							style="color: blue; font-weight: bold; font-size: 14px;"><%=billar.getProperty("tiempo")%></span></td>
 					</tr>
