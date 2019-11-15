@@ -42,6 +42,8 @@
 						<td align="right"><h5 style="font-weight: bold;">Inicio:</h5></td>
 						<td align="right"><span id="in_hi"
 							style="color: blue; font-weight: bold; font-size: 14px;"><%=billar.getProperty("inicio")%></span></td>
+					
+						
 						<td align="right"><h5 style="font-weight: bold;">Final:</h5></td>
 						<td align="right"><span id="in_hf"
 							style="color: blue; font-weight: bold; font-size: 14px;"><%=billar.getProperty("fin")%></span></td>
@@ -59,7 +61,7 @@
 						<td align="right"><span id="in_duracion"
 							style="color: blue; font-weight: bold; font-size: 14px;"><%=billar.getProperty("minutosnormal")%></span></td>
 						<td align="right"><h5 style="font-weight: bold;">Monto
-								normal: S/.</h5></td>
+								normal: S/.</h5></td>	
 						<td align="right"><span id="in_montoNormal"
 							style="color: blue; font-weight: bold; font-size: 14px;"><%=billar.getProperty("montonormal")%>0</span></td>
 
@@ -127,11 +129,6 @@
 		</div>
 
 	</div>
-
-
-
-
-
 
 
 

@@ -187,6 +187,7 @@ function registrar(id) {
 		}
 	})
 }
+
 function tacos(id, operacion) {
 	//var id = $(this).attr("id");
 	var x = $("#taco"+id).val();
@@ -238,7 +239,7 @@ $(document).ready(function() {
 					if (estado == "libre") {
 						$("#taco"+id).val(0);
 						initializeClock(id);
-						registrar(id)
+						registrar(id);
 					}
 				
 				});

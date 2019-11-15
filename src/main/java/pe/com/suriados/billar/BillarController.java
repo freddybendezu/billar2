@@ -115,24 +115,31 @@ public class BillarController {
 	@ResponseBody
 	public List<String> alquilar(HttpServletRequest request, ModelMap model) {
 		// String codigo = request.getParameter("codigo");
-		String mesa = request.getParameter("mesa");
-		String inicio = request.getParameter("inicio");
-		String tiempo = request.getParameter("tiempo");
-		String precio = request.getParameter("precio");
-		String taco = request.getParameter("taco");
-		String mesanumeroorden = request.getParameter("mesanumeroorden");
-		String preciotaco = "10";
-		String total = "0";
-		String estado = request.getParameter("estado");
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		ZonedDateTime fechaActual = ZonedDateTime.now(ZoneId.of("America/Lima"));
 		
-		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		Entity billar = new Entity("Billar");
-
 		try {
 			HttpSession sesion = request.getSession();
 			Object usuario = (String) sesion.getAttribute("usuario");
+			
+			
+			
+			String mesa = request.getParameter("mesa");
+			String inicio = request.getParameter("inicio");
+			String tiempo = request.getParameter("tiempo");
+			String precio = request.getParameter("precio");
+			String taco = request.getParameter("taco");
+			String mesanumeroorden = request.getParameter("mesanumeroorden");
+			String preciotaco = "0";
+			String total = "0";
+			String estado = request.getParameter("estado");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			ZonedDateTime fechaActual = ZonedDateTime.now(ZoneId.of("America/Lima"));
+			
+			DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+			
+			
+			
+			
 			
 			billar.setProperty("usuario", usuario);
 			billar.setProperty("tiempo", tiempo);
@@ -146,21 +153,21 @@ public class BillarController {
 			billar.setProperty("horainicio", horainicio);
 			
 			
-			billar.setProperty("minutosnormal", "");
-			billar.setProperty("minutosincremento", "");
-			billar.setProperty("minutostotal", "");
-			billar.setProperty("montonormal", "");
-			billar.setProperty("montoincremento", "");
+			billar.setProperty("minutosnormal", 0);
+			billar.setProperty("minutosincremento", 0);
+			billar.setProperty("minutostotal", 0);
+			billar.setProperty("montonormal", 0);
+			billar.setProperty("montoincremento", 0);
 			billar.setProperty("montotaco", preciotaco);
-			billar.setProperty("descuento", "");
+			billar.setProperty("descuento", 0);
 			billar.setProperty("montototal", 0);
 			billar.setProperty("mesanumero", mesa);
 			billar.setProperty("mesanumeroorden", mesanumeroorden);
 			billar.setProperty("taco", taco);
 			billar.setProperty("estado", estado);
-			billar.setProperty("incremento", "");
-			billar.setProperty("preciotaco", "");
-			billar.setProperty("preciohoranormal", "");
+			billar.setProperty("incremento", 0);
+			billar.setProperty("preciotaco", 0);
+			billar.setProperty("preciohoranormal", 0);
 			billar.setProperty("fecha", fechaActual.format(formatter));
 			ds.put(billar);
 
@@ -172,7 +179,7 @@ public class BillarController {
 			ds.put(billarmesa);
 
 		} catch (Exception e) {
-
+			
 		} finally {
 
 		}
@@ -221,7 +228,7 @@ public class BillarController {
 		DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
 		simbolos.setDecimalSeparator('.');
 		DecimalFormat decimalFormato = new DecimalFormat("####0.0",simbolos);
-		
+		System.out.println("request: " + request);
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
 		Key key = KeyFactory.createKey("Billar", Long.parseLong(request.getParameter("codigo")));
@@ -367,7 +374,7 @@ public class BillarController {
 		String montotaco = request.getParameter("total");
 		String descuento = request.getParameter("total");
 		String montototal = request.getParameter("montototal");
-		String taco = request.getParameter("total");
+		String taco = request.getParameter("taco");
 		String incremento = request.getParameter("total");
 		String preciotaco = request.getParameter("total");
 		String preciohoranormal = request.getParameter("total");
