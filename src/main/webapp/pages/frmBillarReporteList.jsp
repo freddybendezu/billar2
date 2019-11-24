@@ -41,6 +41,9 @@
 		<div class="content">
 			<h3>Reporte: S/. <span id="total"></span></h3>
 			<hr />
+		
+			
+			
  		<div class="col-sm-12">
 				<table id="billareporte"
 				class="table table-bordered table-hover dataTable"
@@ -82,6 +85,10 @@
 						%>
 					</tbody>
 				</table>
+		</div>
+		<div class="col-sm-4">
+			<button type="button" class="btn btn-primary" class="btn" onclick="fn_aceptar_final(")>Confirmar</button>
+			<a href="/billar/list" class="btn btn-sm btn-danger">Cancelar</a>
 		</div>
 		</div>
 	</div>
