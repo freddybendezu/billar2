@@ -23,7 +23,7 @@
 		<h1>Finalizar mesa</h1>
 
 		<div class="col-sm-8" id="imprime">
-			<table>
+			<table>	
 				<tbody>
 					<tr>
 						<td colspan="6" align="center">
@@ -153,7 +153,7 @@
 		var montoTotal = $("#in_mt").text();
 
 		$.ajax({
-			url : '/billar/confirmar',
+			url : '/billar/confirmar',	
 			type : 'POST',
 			dataType : 'JSON',
 			data : {
