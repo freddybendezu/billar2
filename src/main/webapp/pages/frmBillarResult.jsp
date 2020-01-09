@@ -29,7 +29,7 @@
 				<tbody>
 				
 					<tr>
-						<td colspan="6" align="center"><span id="in_hi" style="color: blue; font-weight: bold; font-size: 18px;">BILLAR SURIA</span></td>
+						<td colspan="6" align="center"><span id="in_hi" style="color: blue; font-weight: bold; font-size: 18px;">BILLAR LA MEGA</span></td>
 					</tr>
 					<tr>
 						<td colspan="6" align="center"><span id="in_hi" style="color: blue; font-weight: bold; font-size: 11px;">SALON DE JUEGOS</span></td>
@@ -93,8 +93,8 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><span id="in_hi"  style="font-size: 11px;">Dscto: S/.</span></td>
-						<td><span id="in_descuento" style="font-size: 11px;"><%=billar.getProperty("descuento")%>0</span></td>
+						<td><span id="in_hi"  style="font-size: 11px;">Dscto:</span></td>
+						<td><span id="in_descuento" style="font-size: 11px;">S/.<%=billar.getProperty("descuento")%>0</span></td>
 					</tr>
 					<tr>
 						<td colspan="6"><hr /></td>
@@ -104,8 +104,8 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><span id="in_hi"  style="font-size: 11px;">T. Pagar: S/.</span></td>
-						<td><span id="in_mt" style="font-size: 11px;"><%=billar.getProperty("montototal")%>0</span></td>
+						<td><span id="in_hi"  style="font-size: 11px;">T. Pagar:</span></td>
+						<td><span id="in_mt" style="font-size: 11px;">S/.<%=billar.getProperty("montototal")%>0</span></td>
 					</tr>
 				</tbody>
 			</table>

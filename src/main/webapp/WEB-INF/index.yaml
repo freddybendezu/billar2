@@ -5,3 +5,26 @@ indexes:
   - name: fecha
   - name: usuario
   - name: fin
+  
+- kind: Billar
+  properties:
+  - name: fecha
+  - name: fin
+  
+- kind: Billar
+  properties:
+  - name: mesanumero
+  - name: fin
+  
+- kind: Billar
+  properties:
+  - name: fecha
+  - name: mesanumero
+  - name: usuario  
+  - name: fin
+  
+- kind: Billar
+  properties:
+  - name: fecha
+  - name: mesanumero
+  - name: fin  
