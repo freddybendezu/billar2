@@ -3,10 +3,7 @@
 <html>
 <head>
 <!-- Bootstrap -->
-	<!--  Altera el nav..
-	<link href="<%=request.getContextPath() %>/css1/bootstrap.min.css" rel="stylesheet"> -->
-	
- 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
 <style>
@@ -111,11 +108,15 @@
 </div>
 </body>
 </html>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script  type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script  type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script  type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script  type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+	
+
 <script>
 $(document).ready(function(){
 	
@@ -125,7 +126,7 @@ $(document).ready(function(){
         var producto = $(this).parents("tr").find("td")[2].innerHTML;
         var cajas = 1;
         var unidades = 0;
-        var codigo = $(this).parents("tr").find("td")[8].innerHTML;
+        var codigo = $(this).parents("tr").find("td")[9].innerHTML;
         var nuevaFila = "<tr><td id='tmpbarcode' name='tmpbarcode'>" + barcode +
         "<td id='tmpproducto' name='tmpproducto'>" + producto +
         				"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
@@ -202,7 +203,7 @@ $(document).ready(function(){
         var producto = $(this).parents("tr").find("td")[2].innerHTML;
         var cajas = 0;
         var unidades = 1;
-        var codigo = $(this).parents("tr").find("td")[8].innerHTML;
+        var codigo = $(this).parents("tr").find("td")[9].innerHTML;
         var nuevaFila = "<tr><td id='tmpbarcode' name='tmpbarcode'>" + barcode + 
         "<td id='tmpproducto' name='tmpproducto'>" + producto +
         				"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
