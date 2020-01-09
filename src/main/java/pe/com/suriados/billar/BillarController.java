@@ -111,6 +111,13 @@ public class BillarController {
 		return "frmBillarMesaList";
 	}
 
+	/*Controlador de reporte de ventas
+	@RequestMapping (value= {"/reporteventas"}, method= {org.springframework.web.bind.annotation.RequestMethod.POST})
+	@ResponseBody
+	public List<String> reporteventas(HttpServletRequest request, ModelMap model){
+		Entity ventas = new Entity ("Ventas")
+	}*/
+	
 	@RequestMapping(value = { "/alquilar" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
 	@ResponseBody
 	public List<String> alquilar(HttpServletRequest request, ModelMap model) {

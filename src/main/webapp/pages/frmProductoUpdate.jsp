@@ -32,23 +32,31 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Categoria:</label>
 				<div class="col-sm-2">
-					<input type="text" name="codigoCategoria" id="codigoCategoria" value="<%=producto.getProperty("codigoCategoria")%>"  class="form-control" placeholder="NIK" required>
+					<input type="text" name="codigoCategoria" id="codigoCategoria" value="<%=producto.getProperty("codigoCategoria")%>"  class="form-control" placeholder="Codigo de Categoria" required>
 				</div>
 			</div>
+			<div class="form-group">
+					<label class="col-sm-3 control-label">BarCode:</label>
+					<div class="col-sm-3">
+						<input type="text" name="barCode" id="barCode"
+						value="<%=producto.getProperty("barCode")%>" class="form-control" placeholder="Ingrese el barCode" required>
+					</div>
+				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Producto:</label>
 					<div class="col-sm-3">
 						<input type="text" name="nombreProducto" id="nombreProducto"
-						value="<%=producto.getProperty("nombreProducto")%>" class="form-control" placeholder="Teléfono" required>
+						value="<%=producto.getProperty("nombreProducto")%>" class="form-control" placeholder="Ingrese el producto" required>
 					</div>
 				</div>
+				
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Unidades x caja:</label>
 					<div class="col-sm-3">
 						<input type="number"
 						name="unidadesXCaja"
 						id="unidadesXCaja"
-						value="<%=producto.getProperty("unidadesXCaja")%>" class="form-control" placeholder="Teléfono" required>
+						value="<%=producto.getProperty("unidadesXCaja")%>" class="form-control" placeholder="Unidades por Caja" required>
 					</div>
 				</div>	
 				

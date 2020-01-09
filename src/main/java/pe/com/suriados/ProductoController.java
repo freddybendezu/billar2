@@ -36,8 +36,10 @@ public class ProductoController
   @RequestMapping(value={"/add"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
   public ModelAndView add(HttpServletRequest request, ModelMap model)
   {
-    String codigoCategoria = request.getParameter("codigoCategoria");
+    //AGREGAR CODIGO PRODUCTO
+	String codigoCategoria = request.getParameter("codigoCategoria");
     String nombreProducto = request.getParameter("nombreProducto");
+    String barCode = request.getParameter("barCode");
     String unidadesXCaja = request.getParameter("unidadesXCaja");
     String nroCajasCompradas = request.getParameter("nroCajasCompradas");
     String nroUnidadesCompradas = request.getParameter("nroUnidadesCompradas");
@@ -57,6 +59,7 @@ public class ProductoController
     try {
       producto.setProperty("codigoCategoria", codigoCategoria);
       producto.setProperty("nombreProducto", nombreProducto);
+      producto.setProperty("barCode", barCode);
       producto.setProperty("unidadesXCaja", unidadesXCaja);
       producto.setProperty("nroCajasCompradas", nroCajasCompradas);
       producto.setProperty("nroUnidadesCompradas", nroUnidadesCompradas);
@@ -70,6 +73,7 @@ public class ProductoController
 
       productoHistorial.setProperty("codigoCategoria", codigoCategoria);
       productoHistorial.setProperty("nombreProducto", nombreProducto);
+      productoHistorial.setProperty("barCode", barCode);
       productoHistorial.setProperty("unidadesXCaja", unidadesXCaja);
       productoHistorial.setProperty("nroCajasCompradas", nroCajasCompradas);
       productoHistorial.setProperty("nroUnidadesCompradas", nroUnidadesCompradas);
@@ -110,6 +114,7 @@ public class ProductoController
     String id = request.getParameter("id");
     String codigoCategoria = request.getParameter("codigoCategoria");
     String nombreProducto = request.getParameter("nombreProducto");
+    String barCode = request.getParameter("barCode");
     String unidadesXCaja = request.getParameter("unidadesXCaja");
     String nroCajasCompradas1 = request.getParameter("nroCajasCompradas1");
     String nroUnidadesCompradas1 = request.getParameter("nroUnidadesCompradas1");
@@ -130,6 +135,7 @@ public class ProductoController
     try {
       producto.setProperty("codigoCategoria", codigoCategoria);
       producto.setProperty("nombreProducto", nombreProducto);
+      producto.setProperty("barCode", barCode);
       producto.setProperty("unidadesXCaja", unidadesXCaja);
       producto.setProperty("nroCajasCompradas", Integer.valueOf(totalCajas));
       producto.setProperty("nroUnidadesCompradas", Integer.valueOf(totalUnidades));
@@ -143,6 +149,7 @@ public class ProductoController
 
       productoHistorial.setProperty("codigoCategoria", codigoCategoria);
       productoHistorial.setProperty("nombreProducto", nombreProducto);
+      productoHistorial.setProperty("barCode", barCode);
       productoHistorial.setProperty("unidadesXCaja", unidadesXCaja);
       productoHistorial.setProperty("nroCajasCompradas", nroCajasCompradas1);
       productoHistorial.setProperty("nroUnidadesCompradas", nroUnidadesCompradas1);
@@ -155,7 +162,7 @@ public class ProductoController
       tx.commit();
     } finally {
       if (tx.isActive()) {
-        tx.rollback();
+        tx.rollback();	
       }
     }
     return new ModelAndView("redirect:list");
@@ -196,6 +203,7 @@ public class ProductoController
     String tmpNombreBarra = request.getParameter("tmpNombreBarra");
     String tmpCodigoProducto = request.getParameter("tmpCodigoProducto");
     String tmpNombreProducto = request.getParameter("tmpNombreProducto");
+    String tmpBarCode = request.getParameter("tmpBarCode");
     String tmpCajas = request.getParameter("tmpCajas");
     String tmpUnidades = request.getParameter("tmpUnidades");
 
@@ -203,12 +211,13 @@ public class ProductoController
 
     String[] codigoProducto = tmpCodigoProducto.split(",");
     String[] nombreProducto = tmpNombreProducto.split(",");
+    String[] barCode = tmpBarCode.split(",");
     String[] cajas = tmpCajas.split(",");
     String[] unidades = tmpUnidades.split(",");
 
-//    List productoBarraHistorialLista = new ArrayList();
-//    List productoLista = new ArrayList();
-//    List productoBarraLista = new ArrayList();
+   //List productoBarraHistorialLista = new ArrayList();
+   //List productoLista = new ArrayList();
+   //List productoBarraLista = new ArrayList();
     
 	List<Entity> productoBarraHistorialLista = new ArrayList<Entity>();
 	List<Entity> productoLista = new ArrayList<Entity>();
@@ -231,6 +240,7 @@ public class ProductoController
         productoBarraHistorial.setProperty("nombreBarra", tmpNombreBarra);
         productoBarraHistorial.setProperty("codigoProducto", codigoProducto[i]);
         productoBarraHistorial.setProperty("nombreProducto", nombreProducto[i]);
+        productoBarraHistorial.setProperty("barCode", barCode[i]);
         productoBarraHistorial.setProperty("cajas", cajas[i]);
         productoBarraHistorial.setProperty("unidades", unidades[i]);
         productoBarraHistorial.setProperty("totalUnidades", Integer.valueOf(totalUnidades));
@@ -254,6 +264,7 @@ public class ProductoController
           productoBarra.setProperty("nombreBarra", tmpNombreBarra);
           productoBarra.setProperty("codigoProducto", codigoProducto[i]);
           productoBarra.setProperty("nombreProducto", nombreProducto[i]);
+          productoBarra.setProperty("barCode", barCode[i]);
           productoBarra.setProperty("cajas", Integer.valueOf(totalCajasProductoBarra));
           productoBarra.setProperty("unidades", Integer.valueOf(totalUnidadesProductoBarra));
           productoBarra.setProperty("totalUnidades", Integer.valueOf(totalUnidades));

@@ -33,6 +33,7 @@
 				<thead>
 					<tr>
 						<th>Stock</th>
+						<th>BarCode</th>
 						<th>Producto</th>
 						<th>Precio</th>
 						<th>Accion</th>
@@ -48,7 +49,7 @@
         		
 					<tr>
 					<td id="totalUnidades"><%=e.getProperty("totalUnidades")%></td>
-						
+						<td id="barCode"><%=e.getProperty("barCode")%></td>
 						<td id="nombreProducto"><%=e.getProperty("nombreProducto")%></td>
 						<td id="precioProducto"><%=e.getProperty("precioProducto")%></td>
 						<td><a href='#' title='unidades' class='btn btn-danger btn-sm' id='btnUnidades'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a></td>
@@ -66,12 +67,13 @@
 		
 
 			 <div class="col-md-6">
-				<div class="row" style="height:300px;">	
+				<div class="row" style="height:300px;" id="imprimir">	
 					
 						<table class="table table-striped table-hover table-bordered" id="listaProductoBarra">
 						
 						<tr>
 							<th>Cantidad</th>
+							<th>BarCode</th>
 							<th>Producto</th>
 							<th>Precio</th>
 							<th>Subtotal</th>
@@ -101,7 +103,7 @@
 				    <div class="row">
 					    <div class="col-md-8"></div>
 						<div class="col-sm-4">
-							<a href="#" class="btn btn-sm btn-primary" id="btnConfirmar">Confirmar</a>
+							<a href="#" class="btn btn-sm btn-primary" id="btnConfirmar" onclick="printDiv('imprimir')"value="imprimir div">Confirmar</a>
 							<a href="/caja/list" class="btn btn-sm btn-danger">Cancelar</a>
 						</div>
 					</div>
@@ -294,4 +296,20 @@ $(document).ready(function(){
 })
 
 
+</script>
+<!-- IMPRIMIR -->
+<script>
+
+
+function printDiv(nombreDiv) {
+     var contenido= document.getElementById(nombreDiv).innerHTML;
+     var contenidoOriginal= document.body.innerHTML;
+
+     document.body.innerHTML =contenido;
+
+     window.print();
+
+     document.body.innerHTML = contenidoOriginal;
+     window.location.href = '/caja/list';
+}
 </script>

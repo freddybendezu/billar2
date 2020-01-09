@@ -26,12 +26,20 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-sm-3 control-label">BarCode</label>
+					<div class="col-sm-3">
+						<input type="text" name="barCode" id="barCode" class="form-control"
+							placeholder="barCode" required>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-sm-3 control-label">Producto:</label>
 					<div class="col-sm-3">
 						<input type="text" name="nombreProducto" id="nombreProducto" class="form-control"
 							placeholder="nombreProducto" required>
 					</div>
 				</div>	
+				
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Unidades x caja:</label>
 					<div class="col-sm-3">

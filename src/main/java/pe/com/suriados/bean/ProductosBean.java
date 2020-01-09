@@ -5,6 +5,7 @@ public class ProductosBean {
 	private String codigoProducto;
 	private String codigoCategoria;
 	private String nombreProducto;
+	private String barCode;
 	private String unidadesXCaja;
 	private String nroCajasCompradas;
 	private String nroUnidadesCompradas;
@@ -97,6 +98,14 @@ public class ProductosBean {
 
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+
+	public String getbarCode() {
+		return barCode;
+	}
+
+	public void setbarCode(String barCode) {
+		this.barCode = barCode;
 	}
 
 }

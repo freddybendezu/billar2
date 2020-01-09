@@ -3,6 +3,9 @@
 <html>
 <head>
 <!-- Bootstrap -->
+	<!--  Altera el nav..
+	<link href="<%=request.getContextPath() %>/css1/bootstrap.min.css" rel="stylesheet"> -->
+	
  	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
@@ -29,6 +32,7 @@
 			
 				<tr>
 					<th>Categoria</th>
+					<th>BarCode</th>
 					<th>Producto</th>
 					<th>Unid. x caja</th>
 					<th>Cajas</th>
@@ -47,6 +51,7 @@
 			
 			<tr>
 				<td id="codigoCategoria"><%=e.getProperty("codigoCategoria")%></td>
+				<td id="barCode"><%=e.getProperty("barCode")%></td>
 				<td id="nombreProducto"><%=e.getProperty("nombreProducto")%></td>
 				<td id="unidadesXCaja"><%=e.getProperty("unidadesXCaja")%></td>
 				<td id="nroCajasCompradas"><%=e.getProperty("nroCajasCompradas")%></td>
@@ -84,6 +89,7 @@
 				</select> 				
 				<table class="table table-striped table-hover" id="listaProductoBarra">			
 				<tr>
+					<th>BarCode</th>
 					<th>Producto</th>
 					<th>Cajas</th>
 					<th>Unidades</th>
@@ -115,20 +121,22 @@ $(document).ready(function(){
 	
 	$(document).on('click', '#btnCajas', function (event) {
 	    event.preventDefault();
-        var producto = $(this).parents("tr").find("td")[1].innerHTML;
+	    var barcode = $(this).parents("tr").find("td")[1].innerHTML;
+        var producto = $(this).parents("tr").find("td")[2].innerHTML;
         var cajas = 1;
         var unidades = 0;
         var codigo = $(this).parents("tr").find("td")[8].innerHTML;
-        var nuevaFila = "<tr><td id='tmpproducto' name='tmpproducto'>" + producto + 
+        var nuevaFila = "<tr><td id='tmpbarcode' name='tmpbarcode'>" + barcode +
+        "<td id='tmpproducto' name='tmpproducto'>" + producto +
         				"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
         				"</td><td id='tmpunidades' name='tmpunidades'>" + unidades + 
         				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>" + 
         				"</td><td style='display:none;' id='tmpcodigo' name='tmpcodigo'>" + codigo +"</td></tr>";
       	
-        var saldoCaja = parseInt($(this).parents("tr").find("td")[3].innerHTML) - 1;
+        var saldoCaja = parseInt($(this).parents("tr").find("td")[4].innerHTML) - 1;
       	
         if (saldoCaja >= 0){
-      		$(this).parents("tr").find("td")[3].innerHTML = saldoCaja;
+      		$(this).parents("tr").find("td")[4].innerHTML = saldoCaja;
       	}else{
       		return false;
       	}
@@ -172,7 +180,8 @@ $(document).ready(function(){
 		
 		cajas = parseInt(cajas)+parseInt(cajasTotal);
 		unidades = parseInt(unidades)+parseInt(unidadesTotal);
-	    var nuevaFila1 = "<td id='tmpproducto' name='tmpproducto'>" + producto + 
+	    var nuevaFila1 = "<td id='tmpbarcode' name='tmpbarcode'>" + barcode + 
+	    "<td id='tmpproducto' name='tmpproducto'>" + producto + 
 						"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
 						"</td><td id='tmpunidades' name='tmpunidades'>" + unidades + 
 						"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>" + 
@@ -189,20 +198,22 @@ $(document).ready(function(){
 
 	$(document).on('click', '#btnUnidades', function (event) {
 	    event.preventDefault();
-        var producto = $(this).parents("tr").find("td")[1].innerHTML;
+	    var barcode = $(this).parents("tr").find("td")[1].innerHTML;
+        var producto = $(this).parents("tr").find("td")[2].innerHTML;
         var cajas = 0;
         var unidades = 1;
         var codigo = $(this).parents("tr").find("td")[8].innerHTML;
-        var nuevaFila = "<tr><td id='tmpproducto' name='tmpproducto'>" + producto + 
+        var nuevaFila = "<tr><td id='tmpbarcode' name='tmpbarcode'>" + barcode + 
+        "<td id='tmpproducto' name='tmpproducto'>" + producto +
         				"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
         				"</td><td id='tmpunidades' name='tmpunidades'>" + unidades + 
         				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>" + 
         				"</td><td style='display:none;' id='tmpcodigo' name='tmpcodigo'>" + codigo +"</td></tr>";
         
-        				var saldoUnidad = parseInt($(this).parents("tr").find("td")[4].innerHTML) - 1;
+        				var saldoUnidad = parseInt($(this).parents("tr").find("td")[5].innerHTML) - 1;
         		      	
         		        if (saldoUnidad >= 0){
-        		      		$(this).parents("tr").find("td")[4].innerHTML = saldoUnidad;
+        		      		$(this).parents("tr").find("td")[5].innerHTML = saldoUnidad;
         		      	}else{
         		      		return false;
         		      	} 				
@@ -245,7 +256,8 @@ $(document).ready(function(){
 		
 		cajas = parseInt(cajas)+parseInt(cajasTotal);
 		unidades = parseInt(unidades)+parseInt(unidadesTotal);
-	    var nuevaFila1 = "<td id='tmpproducto' name='tmpproducto'>" + producto + 
+	    var nuevaFila1 = "<td id='tmpbarcode' name='tmpbarcode'>" + barcode + 
+	    "<td id='tmpproducto' name='tmpproducto'>" + producto +
 						"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
 						"</td><td id='tmpunidades' name='tmpunidades'>" + unidades + 
 						"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>" + 
@@ -262,10 +274,11 @@ $(document).ready(function(){
 	
 	$(document).on('click', '#btnQuitar', function (event) {
 	    event.preventDefault();
-	    var producto = $(this).parents("tr").find("td")[0].innerHTML;
-	    var cajas = $(this).parents("tr").find("td")[1].innerHTML;
-	    var unidades = $(this).parents("tr").find("td")[2].innerHTML;
-	    var codigo = $(this).parents("tr").find("td")[4].innerHTML;
+	    var barcode = $(this).parents("tr").find("td")[0].innerHTML;
+	    var producto = $(this).parents("tr").find("td")[1].innerHTML;
+	    var cajas = $(this).parents("tr").find("td")[2].innerHTML;
+	    var unidades = $(this).parents("tr").find("td")[3].innerHTML;
+	    var codigo = $(this).parents("tr").find("td")[5].innerHTML;
 	    var cont = 1
 		var fila = 0;
 	    var i = 1;
@@ -308,6 +321,7 @@ $(document).ready(function(){
 	 $("#btnAgregarProductoBarra").click(function(){
 						
 			var tmpCodigoProducto="";
+			var tmpBarCode="";
 			var tmpNombreProducto="";
 			var tmpCajas="";
   			var tmpUnidades="";
@@ -315,6 +329,10 @@ $(document).ready(function(){
 			$('#listaProductoBarra #tmpcodigo').each(function() {
 				tmpCodigoProducto+=$(this).html() + ",";          
       		});
+			
+			$('#listaProductoBarra #tmpbarcode').each(function() {
+				tmpbarcode+=$(this).html() + ",";
+     		});
 			
 			$('#listaProductoBarra #tmpproducto').each(function() {
 				tmpNombreProducto+=$(this).html() + ",";
@@ -330,6 +348,7 @@ $(document).ready(function(){
 			tmpCodigoBarra = $("#barra").val();
 			tmpNombreBarra = $("#barra option:selected").text();
 			tmpCodigoProducto = tmpCodigoProducto.substring(0, tmpCodigoProducto.length-1);
+			tmpBarCode = tmpBarCode.substring(0, tmpBarCode.length-1);
 			tmpNombreProducto = tmpNombreProducto.substring(0, tmpNombreProducto.length-1);
 			tmpCajas = tmpCajas.substring(0, tmpCajas.length-1);
 			tmpUnidades = tmpUnidades.substring(0, tmpUnidades.length-1);
@@ -343,6 +362,7 @@ $(document).ready(function(){
 					tmpCodigoBarra:tmpCodigoBarra,
 					tmpNombreBarra:tmpNombreBarra,
 					tmpCodigoProducto:tmpCodigoProducto,
+					tmpBarCode:tmpBarCode,
 					tmpNombreProducto:tmpNombreProducto,
 					tmpCajas:tmpCajas,
 					tmpUnidades:tmpUnidades

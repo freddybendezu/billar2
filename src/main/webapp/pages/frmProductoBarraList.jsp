@@ -36,6 +36,7 @@
 						<tr>
 							<th>#</th>
 							<th>Barra</th>
+							<th>BarCode</th>
 							<th>Producto</th>
 							<th>Cajas</th>
 							<th>Unidad</th>
@@ -54,6 +55,7 @@
 						<tr>
 							<td><%=i + 1%></td>
 							<td><%=e.getProperty("nombreBarra")%></td>
+							<td><%=e.getProperty("barCode")%></td>
 							<td><%=e.getProperty("nombreProducto")%></td>
 							<td><%=e.getProperty("cajas")%></td>
 							<td><%=e.getProperty("unidades")%></td>
