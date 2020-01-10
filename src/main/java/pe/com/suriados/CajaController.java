@@ -78,6 +78,7 @@ public class CajaController
       for (Entity e : results) {
         Entity temporal = new Entity("Temporal");
         temporal.setProperty("codigoProducto", e.getProperty("codigoProducto"));
+        temporal.setProperty("barCode", e.getProperty("barCode"));
         temporal.setProperty("nombreProducto", e.getProperty("nombreProducto"));
         temporal.setProperty("totalUnidades", e.getProperty("totalUnidades"));
         Key key = KeyFactory.createKey("PrecioPolitica", Long.parseLong(e.getProperty("codigoProducto").toString()));

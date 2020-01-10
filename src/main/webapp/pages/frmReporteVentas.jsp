@@ -22,25 +22,65 @@
 		<jsp:include page="nav.jsp" />
 	</nav>
 	<div class="container">
+
+
+		<div class="form-group col-md-3">
+			<label>Ventas:</label> <select name="cboventas" class="form-control"
+				id="cboventas">
+				<option value=""></option>
+				<%
+					List<Entity> barra = (List<Entity>) request.getAttribute("barraList");
+					for (Entity e : barra) {
+				%>
+				<option value="<%=e.getKey().getId()%>"><%=e.getProperty("nombre")%></option>
+				<%
+					}
+				%>
+			</select>
+		</div>
+
 		<div class="content" id="imprimir">
-			<h1>REPORTE DE VENTAS</h1>
-
-
+			<h4>REPORTE DE VENTAS</h4>
 			<div class="col-sm-12">
-				<div>
 
-					<table id="ventas">
-						<thead>
+				<table id="billareporte"
+					class="table table-bordered table-hover dataTable"
+					style="width: 100%">
+					<thead>
 						<tr>
-							<th>#</th>
-							<th>Id</th>
+							<th>Categoria</th>
+							<th>BarCode</th>
 							<th>Producto</th>
-							<th>Precio</th>
+							<th>Unid. x caja</th>
+							<th>Cajas</th>
+							<th>Unidades</th>
+							<th>Precio x caja</th>
+							<th>Precio x unidad</th>
 						</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
-				</div>
+					</thead>
+					<tbody>
+
+						<%
+							List<Entity> productos = (List<Entity>) request.getAttribute("productoList");
+							for (Entity e : productos) {
+						%>
+
+						<tr>
+							<td id="codigoCategoria"><%=e.getProperty("codigoCategoria")%></td>
+							<td id="barCode"><%=e.getProperty("barCode")%></td>
+							<td id="nombreProducto"><%=e.getProperty("nombreProducto")%></td>
+							<td id="unidadesXCaja"><%=e.getProperty("unidadesXCaja")%></td>
+							<td id="nroCajasCompradas"><%=e.getProperty("nroCajasCompradas")%></td>
+							<td id="nroUnidadesCompradas"><%=e.getProperty("nroUnidadesCompradas")%></td>
+							<td id="precioXCaja"><%=e.getProperty("precioXCaja")%></td>
+							<td id="precioXUnidad"><%=e.getProperty("precioXUnidad")%></td>
+						</tr>
+						<%
+							}
+						%>
+
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

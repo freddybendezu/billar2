@@ -206,7 +206,8 @@ $(document).ready(function(){
 
     $(document).on('click','#btnQuitar', function(event) {
                 event.preventDefault();
-                //var producto = $(this).parents("tr").find("td")[0].innerHTML;
+                
+                var producto = $(this).parents("tr").find("td")[0].innerHTML;
                 var cajas = $(this).parents("tr").find("td")[1].innerHTML;
                 var unidades = $(this).parents("tr").find("td")[0].innerHTML;
                 var codigo = $(this).parents("tr").find("td")[6].innerHTML;
@@ -241,9 +242,11 @@ $(document).ready(function(){
 
             });
 
+    <!-- se agrego campo barcode-->
     $("#btnConfirmar").click(function() {
 
           var tmpCodigoProducto = "";
+          var tmpBarCode = "";
           var tmpNombreProducto = "";
           var tmpPrecioProducto = "";
           var tmpCantidadProducto = "";
@@ -251,6 +254,10 @@ $(document).ready(function(){
 
           $('#listaProductoBarra #tmpcodigo').each(function() {
               tmpCodigoProducto += $(this).html() + ",";
+          });
+          
+          $('#listaProductoBarra #tmpbarcode').each(function() {
+              tmpBarCode += $(this).html() + ",";
           });
 
           $('#listaProductoBarra #tmpproducto').each(function() {
@@ -268,6 +275,7 @@ $(document).ready(function(){
           tmpCodigoBarra = $("#barra").val();
           tmpTotal = $("#total").val();
           tmpCodigoProducto = tmpCodigoProducto.substring(0,tmpCodigoProducto.length - 1);
+          tmpBarCode = tmpBarCode.substring(0,tmpBarCode.length - 1);
           tmpNombreProducto = tmpNombreProducto.substring(0,tmpNombreProducto.length - 1);
           tmpPrecioProducto = tmpPrecioProducto.substring(0,tmpPrecioProducto.length - 1);
           tmpCantidadProducto = tmpCantidadProducto.substring(0,tmpCantidadProducto.length - 1);
@@ -281,6 +289,7 @@ $(document).ready(function(){
                             tmpCodigoBarra: tmpCodigoBarra,
                             tmpPrecioProducto: tmpPrecioProducto,
                             tmpCodigoProducto: tmpCodigoProducto,
+                            tmpBarCode: tmpBarCode,
                             tmpNombreProducto: tmpNombreProducto,
                             tmpCantidadProducto: tmpCantidadProducto,
                             tmpTotal: tmpTotal
@@ -315,4 +324,4 @@ function printDiv(nombreDiv) {
      document.body.innerHTML = contenidoOriginal;
      window.location.href = '/caja/list';
 }
-</script>
+</script>  

@@ -10,9 +10,12 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -68,9 +71,37 @@ public class ProductoBarraController
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Query query = new Query("ProductoBarra").addSort("codigoBarra", Query.SortDirection.DESCENDING);
     List<Entity> productoBarraList = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
-
     model.addAttribute("productoBarraList", productoBarraList);
 
+    
+    Query query1 = new Query("Barra").addSort("nombre", Query.SortDirection.DESCENDING);
+    List<Entity> barra = datastore.prepare(query1).asList(FetchOptions.Builder.withLimit(10));
+    model.addAttribute("barraList", barra);
+    
     return "frmProductoBarraList";
   }
+  
+  @RequestMapping(value = { "/barra/producto" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public @ResponseBody ModelMap ProductoBarra(HttpServletRequest request, ModelMap model) {
+		
+	  String codigoBarra = request.getParameter("codigoBarra");
+		
+	   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	   
+	   
+	   System.out.println(codigoBarra);
+	    Query query = new Query("ProductoBarra").addSort("codigoBarra", Query.SortDirection.DESCENDING);
+	    query.addFilter("codigoBarra", Query.FilterOperator.EQUAL, codigoBarra);
+	    List<Entity> productoBarraList = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+	    
+	    model.addAttribute("productoBarraList", productoBarraList);
+		
+	   
+		
+	   
+		
+	   
+		return model;
+	}	
+  
 }
