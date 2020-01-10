@@ -332,7 +332,7 @@ $(document).ready(function(){
       		});
 			
 			$('#listaProductoBarra #tmpbarcode').each(function() {
-				tmpbarcode+=$(this).html() + ",";
+				tmpBarCode+=$(this).html() + ",";
      		});
 			
 			$('#listaProductoBarra #tmpproducto').each(function() {
