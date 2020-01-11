@@ -66,7 +66,8 @@ body {
 	  </div>
 
 		<div class="content" id="imprimir">
-			<h4>REPORTE DE VENTAS</h4>
+			<h4>REPORTE DE VENTAS: S/.<span id="monto"></span></h4>
+			
 		
 				<table id="ventasreporte" class="table table-bordered table-hover dataTable" style="width: 100%">
 					<thead>
@@ -113,7 +114,7 @@ $(document).on('click',	'#btnbuscar', function(event) {
 			var fecha = $('#txtfecha').val();
 			var barra = $('#cbobarra').val();
 			var usuario = $('#cbousuario').val();
-			var total=0;
+			var monto=0;
 			$.ajax({
 				url : 'reporte/ventas',
 				type : 'GET',
@@ -126,7 +127,7 @@ $(document).on('click',	'#btnbuscar', function(event) {
 				success : function(response) {
 					$("#ventasreporte tbody").empty();
 					for (var x=0; x<response.productoVentaList.length; x++){
-						total=total+parseFloat(response.productoVentaList[x].properties.montototal);
+						monto=monto+parseFloat(response.productoVentaList[x].properties.total);
 						var nuevaFila = "<tr>"
 							+"<td>"+x+"</td>"
 							+"<td>"+response.productoVentaList[x].properties.codigoBarra + "</td>"
@@ -137,6 +138,7 @@ $(document).on('click',	'#btnbuscar', function(event) {
 						+"</tr>";
 						$("#ventasreporte").append(nuevaFila);	
 					}
+					$('#monto').text(monto);
 				}
 			});
 
