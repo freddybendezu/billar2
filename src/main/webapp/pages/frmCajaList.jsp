@@ -45,7 +45,7 @@ body{
 								<td id="codigoProducto"><%=e.getProperty("codigoProducto")%></td>
 								<td id="nombreProducto"><%=e.getProperty("nombreProducto")%></td>
 								<td id="precioProducto"><%=e.getProperty("precioProducto")%></td>
-								<td><a href='#' title='unidades' class='btn btn-danger btn-sm' id='btnUnidades'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a></td>
+								<td><a href='#' title='unidades' class='btn btn-danger btn-sm' id='btnUnidades'><i class="fa fa-pencil">UNIDAD</i></a></td>
 								<td id="codigoProducto" style="display: none;"><%=e.getProperty("codigoProducto")%></td>
 							</tr>
 							<%

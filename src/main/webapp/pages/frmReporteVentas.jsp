@@ -38,7 +38,7 @@ body {
 	    </div>
 	    
 	    <div class="form-group col-md-3">
-	     	<label>Tienda:</label>			
+	     	<label>TIENDA:</label>			
 			<select name="cbobarra" class="form-control" id="cbobarra">
 				<option value=""></option>
  				<%

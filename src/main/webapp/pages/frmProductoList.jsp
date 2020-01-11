@@ -36,7 +36,7 @@
 					<th>Unidades</th>
 					<th>Precio x caja</th>
 					<th>Precio x unidad</th>
-					<th>Accion</th> 
+					<th style="width:155px;">Accion</th> 
 					<th style="display:none;">Codigo</th> 
 				</tr>	
 			</thead>
@@ -55,12 +55,12 @@
 				<td id="nroUnidadesCompradas"><%=e.getProperty("nroUnidadesCompradas")%></td>
 				<td id="precioXCaja"><%=e.getProperty("precioXCaja")%></td>
 				<td id="precioXUnidad"><%=e.getProperty("precioXUnidad")%></td>
-				<td><a href="update/<%=e.getKey().getId()%>" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-					 <a href="delete/<%=e.getKey().getId()%>"title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+				<td><a href="update/<%=e.getKey().getId()%>" title="Editar datos" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
+					 <a href="delete/<%=e.getKey().getId()%>"title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
 					 
-					 <a href='#' title='Cajas' class='btn btn-danger btn-sm' id='btnCajas'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a>
-					 <a href='#' title='unidades' class='btn btn-danger btn-sm' id='btnUnidades'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a>
-					 <a href="/precioPolitica/update/<%=e.getKey().getId()%>" title="Precios de venta" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+					 <a href='#' title='Cajas' class='btn btn-danger btn-sm' id='btnCajas'><i class='fa fa-plus'></i></a>
+					 <a href='#' title='unidades' class='btn btn-danger btn-sm' id='btnUnidades'><i class='fa fa-plus'></i></a>
+					 <a href="/precioPolitica/update/<%=e.getKey().getId()%>" title="Precios de venta" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
 				</td>
 				<td id="codigoProducto" style="display:none;"><%=e.getKey().getId()%></td>
 			</tr>			
@@ -115,7 +115,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script  type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 	<script  type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-	
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
 <script>
 $(document).ready(function(){
@@ -131,7 +131,7 @@ $(document).ready(function(){
         "<td id='tmpproducto' name='tmpproducto'>" + producto +
         				"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
         				"</td><td id='tmpunidades' name='tmpunidades'>" + unidades + 
-        				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>" + 
+        				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><i class='fa fa-trash'></i></a>" + 
         				"</td><td style='display:none;' id='tmpcodigo' name='tmpcodigo'>" + codigo +"</td></tr>";
       	
         var saldoCaja = parseInt($(this).parents("tr").find("td")[4].innerHTML) - 1;
@@ -185,7 +185,7 @@ $(document).ready(function(){
 	    "<td id='tmpproducto' name='tmpproducto'>" + producto + 
 						"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
 						"</td><td id='tmpunidades' name='tmpunidades'>" + unidades + 
-						"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>" + 
+						"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><i class='fa fa-trash'></i></a>" + 
 						"</td><td style='display:none;' id='tmpcodigo' name='tmpcodigo'>" + codigo +"</td>";
 	    
 	    if (encontrado == false){
@@ -208,7 +208,7 @@ $(document).ready(function(){
         "<td id='tmpproducto' name='tmpproducto'>" + producto +
         				"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
         				"</td><td id='tmpunidades' name='tmpunidades'>" + unidades + 
-        				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>" + 
+        				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><i class='fa fa-trash'></i></a>" + 
         				"</td><td style='display:none;' id='tmpcodigo' name='tmpcodigo'>" + codigo +"</td></tr>";
         
         				var saldoUnidad = parseInt($(this).parents("tr").find("td")[5].innerHTML) - 1;

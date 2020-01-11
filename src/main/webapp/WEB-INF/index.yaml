@@ -27,4 +27,15 @@ indexes:
   properties:
   - name: fecha
   - name: mesanumero
-  - name: fin  
+  - name: fin
+  
+- kind: ProductoVenta
+  properties:
+  - name: fechaventa
+  - name: codigoBarra
+  
+- kind: ProductoVenta
+  properties:
+  - name: fechaventa
+  - name: usuarioventa
+  - name: codigoBarra

@@ -52,7 +52,7 @@
 						<td id="barCode"><%=e.getProperty("barCode")%></td>
 						<td id="nombreProducto"><%=e.getProperty("nombreProducto")%></td>
 						<td id="precioProducto"><%=e.getProperty("precioProducto")%></td>
-						<td><a href='#' title='unidades' class='btn btn-danger btn-sm' id='btnUnidades'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a></td>
+						<td><a href='#' title='unidades' class='btn btn-danger btn-sm' id='btnUnidades'><i class="fa fa-plus"></i></a></td>
 						
 						<td id="codigoProducto" style="display: none;"><%=e.getProperty("codigoProducto")%></td>
 					</tr>
@@ -124,7 +124,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script  type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 	<script  type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-	
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script>
 $(document).ready(function(){
 	
@@ -143,7 +143,7 @@ $(document).ready(function(){
 				"</td><td id='tmpproducto' name='tmpproducto'>" + producto + 
 				"</td><td id='tmpprecio' name='tmpprecio'>" + precio +
 				"</td><td id='tmsubtotal' name='tmsubtotal'>" + subtotal +
-				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>" + 
+				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><i class='fa fa-remove'></i></a>" + 
 				"</td><td style='display:none;' id='tmpcodigo' name='tmpcodigo'>" + codigo + "</td></tr>";
                 
                 				var saldoUnidad = parseInt($(this).parents("tr").find("td")[0].innerHTML) - 1;
@@ -190,7 +190,7 @@ $(document).ready(function(){
 				"</td><td id='tmpproducto' name='tmpproducto'>" + producto + 
 				"</td><td id='tmpprecio' name='tmpprecio'>" + precio +
 				"</td><td id='tmsubtotal' name='tmsubtotal'>" + subtotal +
-				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>" + 
+				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><i class='fa fa-remove'></i></a>" + 
 				"</td><td style='display:none;' id='tmpcodigo' name='tmpcodigo'>" + codigo + "</td>";
         	    
         	    if (encontrado == false){

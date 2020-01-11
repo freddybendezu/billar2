@@ -119,7 +119,7 @@ public class CajaController
 	
     
     DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH-mm-ss");
+    DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm:ss");
 	ZonedDateTime fechaActual = ZonedDateTime.now(ZoneId.of("America/Lima"));
 	
     String tmpCodigoBarra = barra;
