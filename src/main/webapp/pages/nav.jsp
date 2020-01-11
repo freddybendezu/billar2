@@ -16,8 +16,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         	<a class="dropdown-item" href="/billarreporte/list">REPORTE X USUARIO</a>
-			<a class="dropdown-item" href="/billarreporte/frmBillarReporteGral">REPORTE GENERAL</a>
-			<a class="dropdown-item disabled"  href="/billarreporte/frmReporteVentas">REPORTE ventas</a>
+			<a class="dropdown-item" href="/billarreporte/frmBillarReporteGral">REPORTE BILLAR GENERAL</a>
+			<a class="dropdown-item"  href="/ventasreporte/frmReporteVentas">REPORTE VENTAS GRAL</a>
         </div>
       </li>     
       <li class="nav-item dropdown">

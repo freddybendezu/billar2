@@ -11,12 +11,18 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.TransactionOptions;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -107,18 +113,26 @@ public class CajaController
         }
       }
     }
+    
+    HttpSession sesion = request.getSession();
+	Object usuario = (String) sesion.getAttribute("usuario");
+	
+    
+    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH-mm-ss");
+	ZonedDateTime fechaActual = ZonedDateTime.now(ZoneId.of("America/Lima"));
+	
     String tmpCodigoBarra = barra;
     String tmpCodigoProducto = request.getParameter("tmpCodigoProducto");
     String tmpNombreProducto = request.getParameter("tmpNombreProducto");
     String tmpPrecioProducto = request.getParameter("tmpPrecioProducto");
     String tmpCantidadProducto = request.getParameter("tmpCantidadProducto");
     String tmpTotal = request.getParameter("tmpTotal");
-
     String[] codigoProducto = tmpCodigoProducto.split(",");
     String[] nombreProducto = tmpNombreProducto.split(",");
     String[] precioProducto = tmpPrecioProducto.split(",");
     String[] cantidadProducto = tmpCantidadProducto.split(",");
-
+    
     DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 
     List<Entity> productoVentaDetallelLista = new ArrayList<Entity>();
@@ -129,6 +143,9 @@ public class CajaController
     {
       Entity productoVenta = new Entity("ProductoVenta");
       productoVenta.setProperty("codigoBarra", tmpCodigoBarra);
+      productoVenta.setProperty("fechaventa", fechaActual.format(formatoFecha));
+      productoVenta.setProperty("horaventa", fechaActual.format(formatoHora));
+      productoVenta.setProperty("usuarioventa", usuario);
       productoVenta.setProperty("total", tmpTotal);
       ds.put(productoVenta);
 

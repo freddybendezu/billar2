@@ -67,7 +67,7 @@
 		
 
 			 <div class="col-md-6">
-				<div class="row" style="height:300px;" id="imprimir">	
+				<div class="row" style="height:300px;" >	
 					
 						<table class="table table-striped table-hover table-bordered" id="listaProductoBarra">
 						
@@ -103,7 +103,7 @@
 				    <div class="row">
 					    <div class="col-md-8"></div>
 						<div class="col-sm-4">
-							<a href="#" class="btn btn-sm btn-primary" id="btnConfirmar" onclick="printDiv('imprimir')"value="imprimir div">Confirmar</a>
+							<a href="#" class="btn btn-sm btn-primary" id="btnConfirmar">Confirmar</a>
 							<a href="/caja/list" class="btn btn-sm btn-danger">Cancelar</a>
 						</div>
 					</div>
@@ -200,6 +200,7 @@ $(document).ready(function(){
         	    }
         	    
         	    var total = $("#total").val();
+        	    
                 $("#total").val(parseFloat(total) + parseFloat(precio));
 
            });
@@ -242,8 +243,7 @@ $(document).ready(function(){
 
             });
 
-    <!-- se agrego campo barcode-->
-    $("#btnConfirmar").click(function() {
+   $("#btnConfirmar").click(function() {
 
           var tmpCodigoProducto = "";
           var tmpBarCode = "";
@@ -274,6 +274,7 @@ $(document).ready(function(){
           
           tmpCodigoBarra = $("#barra").val();
           tmpTotal = $("#total").val();
+          console.log(tmpTotal);
           tmpCodigoProducto = tmpCodigoProducto.substring(0,tmpCodigoProducto.length - 1);
           tmpBarCode = tmpBarCode.substring(0,tmpBarCode.length - 1);
           tmpNombreProducto = tmpNombreProducto.substring(0,tmpNombreProducto.length - 1);
@@ -310,18 +311,4 @@ $(document).ready(function(){
 
 </script>
 <!-- IMPRIMIR -->
-<script>
 
-
-function printDiv(nombreDiv) {
-     var contenido= document.getElementById(nombreDiv).innerHTML;
-     var contenidoOriginal= document.body.innerHTML;
-
-     document.body.innerHTML =contenido;
-
-     window.print();
-
-     document.body.innerHTML = contenidoOriginal;
-     window.location.href = '/caja/list';
-}
-</script>  
