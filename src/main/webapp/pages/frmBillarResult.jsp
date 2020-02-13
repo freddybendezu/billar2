@@ -58,23 +58,30 @@
 						<td align="right"><span id="in_tt" style="color: blue; font-size: 11px;"><%=billar.getProperty("tiempo")%></span></td>
 					</tr>
 					<tr>
-						<td><span id="in_hi"  style="font-size: 11px;">P. Normal:</span></td>
-						<td><span id="in_mh" style="font-size: 11px;">S/.<%=billar.getProperty("preciohoranormal")%></span></td>
-						<td><span id="in_hi"  style="font-size: 11px;">D. Normal:</span></td>
-						<td><span id="in_duracion"style="font-size: 11px;"><%=billar.getProperty("minutosnormal")%></span></td>
-						<td><span id="in_hi" style="font-size: 11px;">M. Normal:</span></td>
-						<td><span id="in_montoNormal" style="font-size: 11px;">S/.<%=billar.getProperty("montonormal")%>0</span></td>
+						<td><span id="in_hi"  style="font-size: 11px;">Precio primera hora:</span></td>
+						<td><span id="in_mh" style="font-size: 11px;">S/.<%=billar.getProperty("preciohoraini")%></span></td>
+						<td><span id="in_hi"  style="font-size: 11px;">Precio ultima hora:</span></td>
+						<td><span id="in_mh" style="font-size: 11px;">S/.<%=billar.getProperty("preciohorafin")%></span></td>
+
+				
+						<td><span id="in_hi"  style="font-size: 11px;">Precio Horas:</span></td>
+						<td><span id="in_mh" style="font-size: 11px;">S/.<%=billar.getProperty("montonormal")%></span></td>
+						
+<!-- 						<td><span id="in_hi"  style="font-size: 11px;">D. Normal:</span></td> -->
+<%-- 						<td><span id="in_duracion"style="font-size: 11px;"><%=billar.getProperty("minutosnormal")%></span></td> --%>
+<!-- 						<td><span id="in_hi" style="font-size: 11px;">M. Normal:</span></td> -->
+<%-- 						<td><span id="in_montoNormal" style="font-size: 11px;">S/.<%=billar.getProperty("montonormal")%>0</span></td> --%>
 
 					</tr>
 					
-					<tr>
-						<td><span id="in_hi"  style="font-size: 11px;">P. Recargo:</span></td>
-						<td><span id="in_montoIncrementoMesa" style="font-size: 11px;">S/.<%=billar.getProperty("incremento")%></span></td>
-						<td><span id="in_hi"  style="font-size: 11px;">D. Recargo:</span></td>
-						<td><span id="in_minutosIncremento" style="font-size: 11px;"><%=billar.getProperty("minutosincremento")%></span></td>
-						<td><span id="in_hi"  style="font-size: 11px;">M. Recargo:</span></td>
-						<td><span id="in_montoIncremento" style="font-size: 11px;">S/.<%=billar.getProperty("montoincremento")%>0</span></td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<td><span id="in_hi"  style="font-size: 11px;">P. Recargo:</span></td> -->
+<%-- 						<td><span id="in_montoIncrementoMesa" style="font-size: 11px;">S/.<%=billar.getProperty("incremento")%></span></td> --%>
+<!-- 						<td><span id="in_hi"  style="font-size: 11px;">D. Recargo:</span></td> -->
+<%-- 						<td><span id="in_minutosIncremento" style="font-size: 11px;"><%=billar.getProperty("minutosincremento")%></span></td> --%>
+<!-- 						<td><span id="in_hi"  style="font-size: 11px;">M. Recargo:</span></td> -->
+<%-- 						<td><span id="in_montoIncremento" style="font-size: 11px;">S/.<%=billar.getProperty("montoincremento")%>0</span></td> --%>
+<!-- 					</tr> -->
 					
 					<tr>
 						<td><span id="in_hi"  style="font-size: 11px;">P. Taco:</span></td>

@@ -1,94 +1,142 @@
-<%@ page import="java.util.List"%>
+	<%@ page import="java.util.List"%>
 <%@ page import="com.google.appengine.api.datastore.Entity"%>
 
 <html>
 <head>
 <!-- Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 
 <script src="<%=request.getContextPath()%>/js1/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/js1/timer.jquery.js"></script>
 
 <style type="text/css">
-body{
-		font-size:12px;
-	}
+body {
+	font-size: 12px;
+}
 </style>
 </head>
 <body>
 
 	<jsp:include page="nav.jsp" />
-			
+
 	<div class="container">
-	
+
 		<div class="row">
-		
-		<%
+
+			<%
 				List<Entity> billarMesaList = (List<Entity>) request.getAttribute("billarmesalist");
 				for (Entity e : billarMesaList) {
-					
 			%>
-			<div class="col-md-2" >
-				<div class="card text-white bg-success mb-3" style="max-width: 18rem;" id="<%=e.getProperty("id")%>">
-	  				<div class="card-header">
-	  				<h5>
-	  					<span class="badge badge-warning" id="mesanumeroorden<%=e.getProperty("id")%>"><%=e.getProperty("numero")%></span>
-						<span id="hora<%=e.getProperty("id")%>" >00</span><span id="minuto<%=e.getProperty("id")%>">:00:</span><span id="segundo<%=e.getProperty("id")%>">00</span>
-					</h5>
-	  				
-	  				</div>
-	  				<div class="card-body" style="padding:2px;">
-			  		<form class="form-inline" method="post" action="./result">
-  						<div class="input-group card-title">
-                			<div class="input-group-btn">
-                  				<button type="button" class="btn btn-primary start-timer-btn btn-sm" id="<%=e.getProperty("id")%>">Inicio &nbsp;</button>
-                			</div>
-                			<input type="text" name="horainicio" id="horainicio<%=e.getProperty("id")%>" value="<%=e.getProperty("horainicio")%>" class="form-control form-control-sm" readonly>
-              			</div>
-  						<div class="input-group card-title">
-                			<div class="input-group-btn">
-                  				<button type="button" class="btn btn-warning btn-sm start-horaactual-btn" id="<%=e.getProperty("id")%>">Final &nbsp; &nbsp; </button>
-                			</div>
-                			<input type="text" id="horaactual<%=e.getProperty("id")%>" class="form-control form-control-sm" readonly>
-              			</div>
-              			<div class="input-group card-title">
-                			<div class="input-group-btn">
-                  				<button type="submit" name="save" class="btn btn-danger btn-sm">Guardar</button>
-                			</div>
-                			<input type="text" id="total<%=e.getProperty("id")%>" class="form-control form-control-sm" readonly>
-              			</div>
-              			<div class="input-group card-title">
-                			<input type="text" name="taco" id="taco<%=e.getProperty("id")%>" value="<%=e.getProperty("taco")%>" class="form-control form-control-sm"  readonly>
-                    		<span class="input-group-btn">
-                      			<button type="button" class="btn btn-danger btn-sm start-tacos" id="<%=e.getProperty("id")%>">&nbsp;-&nbsp;</button>
-                      			<button type="button" class="btn btn-warning btn-sm start-tacos" id="<%=e.getProperty("id")%>">+</button>
-                    		</span>
-              			</div>
-              			
-              			<p style="display:none">
-							Mesa: <input type="text" name="mesa" id="mesa<%=e.getProperty("id")%>" value="<%=e.getProperty("id")%>" class="form-control " readonly="readonly">
-						</p>
-						<!---->
-						<p style="display:none">
-							Estado: <input type="text" name="estado" id="estado<%=e.getProperty("id")%>" value="<%=e.getProperty("estado")%>" class="form-control" readonly="readonly">
-						</p>
-						<p style="display:none">
-							Codigo: <input type="text" name="codigo" id="codigo<%=e.getProperty("id")%>" value="<%=e.getProperty("codigo")%>" class="form-control" readonly="readonly">
-						</p>
-						<p style="display:none">
-							inicio:<input type="text" name="inicio" id="inicio<%=e.getProperty("id")%>" value="<%=e.getProperty("inicio")%>" class="form-control form-control-sm" readonly>
-						</p>
-						<p style="display:none">
-							Tiempo: <input type="text" name="tiempo" id="tiempo<%=e.getProperty("id")%>" value="0 sec" class="form-control" readonly="readonly">
-						</p>
-						<p style="display:none">
-							Precio S/.<input type="text" name="precio" id="precio<%=e.getProperty("id")%>" value="<%=e.getProperty("precio")%>" class="form-control" readonly="readonly">
-						</p>
-              			
-					</form>
+			<div class="col-md-2">
+				<div class="card text-white bg-success mb-3"
+					style="max-width: 18rem;" id="<%=e.getProperty("id")%>">
+					<div class="card-header">
+						<h5>
+							<span class="badge badge-warning"
+								id="mesanumeroorden<%=e.getProperty("id")%>"><%=e.getProperty("numero")%></span>
+							<span id="hora<%=e.getProperty("id")%>">00</span><span
+								id="minuto<%=e.getProperty("id")%>">:00:</span><span
+								id="segundo<%=e.getProperty("id")%>">00</span>
+						</h5>
+
+					</div>
+					<div class="card-body" style="padding: 2px;">
+						<form class="form-inline" method="post" action="./result">
+							<div class="input-group card-title">
+								<div class="input-group-btn">
+									<button type="button"
+										class="btn btn-primary start-timer-btn btn-sm"
+										id="<%=e.getProperty("id")%>">Inicio &nbsp;</button>
+								</div>
+								<input type="text" name="horainicio"
+									id="horainicio<%=e.getProperty("id")%>"
+									value="<%=e.getProperty("horainicio")%>"
+									class="form-control form-control-sm" readonly>
+							</div>
+							<div class="input-group card-title">
+								<div class="input-group-btn">
+									<button type="button"
+										class="btn btn-warning btn-sm start-horaactual-btn"
+										value="<%=e.getProperty("horaactual")%>"
+										id="<%=e.getProperty("id")%>">Final &nbsp; &nbsp;</button>
+								</div>
+								<input type="text" id="horaactual<%=e.getProperty("id")%>"
+									class="form-control form-control-sm" readonly>
+							</div>
+							
+							
+							<div class="input-group card-title">
+								<div class="input-group-btn">
+									<button type="submit" name="save" class="btn btn-danger btn-sm">Guardar</button>
+								</div>
+								<input type="text" id="total<%=e.getProperty(	"id")%>"
+									class="form-control form-control-sm" readonly>
+							</div>
+							<div class="input-group card-title">
+								<input type="text" name="taco" id="taco<%=e.getProperty("id")%>"
+									value="<%=e.getProperty("taco")%>"
+									class="form-control form-control-sm" readonly> <span
+									class="input-group-btn">
+									<button type="button" class="btn btn-danger btn-sm start-tacos"
+										id="<%=e.getProperty("id")%>">&nbsp;-&nbsp;</button>
+									<button type="button"
+										class="btn btn-warning btn-sm start-tacos"
+										id="<%=e.getProperty("id")%>">+</button>
+								</span>
+							</div>
+
+							<p style="display: none">
+								Mesa: <input type="text" name="mesa"
+									id="mesa<%=e.getProperty("id")%>"
+									value="<%=e.getProperty("id")%>" class="form-control "
+									readonly="readonly">
+							</p>
+							<!---->
+							<p style="display: none">
+								Estado: <input type="text" name="estado"
+									id="estado<%=e.getProperty("id")%>"
+									value="<%=e.getProperty("estado")%>" class="form-control"
+									readonly="readonly">
+							</p>
+							<p style="display: none">
+								Codigo: <input type="text" name="codigo"
+									id="codigo<%=e.getProperty("id")%>"
+									value="<%=e.getProperty("codigo")%>" class="form-control"
+									readonly="readonly">
+							</p>
+							<p style="display: none">
+								inicio:<input type="text" name="inicio"
+									id="inicio<%=e.getProperty("id")%>"
+									value="<%=e.getProperty("inicio")%>"
+									class="form-control form-control-sm" readonly>
+							</p>
+							<p style="display: none">
+								Tiempo: <input type="text" name="tiempo"
+									id="tiempo<%=e.getProperty("id")%>" value="0 sec"
+									class="form-control" readonly="readonly">
+							</p>
+							<p style="display: none">
+								Precio S/.<input type="text" name="precio"
+									id="precio<%=e.getProperty("id")%>"
+									value="<%=e.getProperty("precio")%>" class="form-control"
+									readonly="readonly">
+							</p>
+
+						</form>
 					</div>
 				</div>
 			</div>
@@ -96,9 +144,9 @@ body{
 				}
 			%>
 		</div>
-	
-		
-		
+
+
+
 	</div>
 
 </body>
