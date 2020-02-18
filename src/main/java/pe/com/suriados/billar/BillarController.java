@@ -487,21 +487,11 @@ public class BillarController {
 			int horaFin = fechaActual.getHour();
 			int minutoFin = fechaActual.getMinute();
 
-			System.out.println("horaInicio: " + horaInicio);
-			System.out.println("minutoInicio: " + minutoInicio);
-			System.out.println("horaFin: " + horaFin);
-			System.out.println("minutoFin: " + minutoFin);
-			System.out.println("diainicio: " + diaInicio);
-			System.out.println("diafin: " + diaFin);
-
-			int cantidadDePrecios = 0;
 			double totalPagarBillar = 0;
 			if (horaInicio == horaFin) {
 				totalPagarBillar = (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * (minutoFin - minutoInicio)) / 60;
 			}else {
 				totalPagarBillar = (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * (60 - minutoInicio)) / 60;
-				System.out.println("precio: " + billarprecio.getProperty("precio" + horaInicio).toString());
-				System.out.println("totalPagar1: " + totalPagarBillar);
 			}
 
 			int horaInicio1 = horaInicio + 1;
@@ -509,21 +499,17 @@ public class BillarController {
 				while (horaInicio1 < horaFin) {
 					totalPagarBillar = totalPagarBillar	+ (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio1).toString()) * 60) / 60;
 					horaInicio1++;
-					System.out.println("totalPagar2: " + totalPagarBillar);
 				}
 				if (horaInicio < horaFin) {
 					totalPagarBillar = totalPagarBillar	+ (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * minutoFin) / 60;
-					System.out.println("totalPagar3: " + totalPagarBillar);
 				}
 			}else {
-				System.out.println("que mas hago ");
-
 				int horadespues = 0;
-				System.out.println("horaInicio: " + horaInicio1);
 
 				while (horaInicio1 <= 23) {
 					totalPagarBillar = totalPagarBillar	+ (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio1).toString()) * 60) / 60;
 					horaInicio1++;
+<<<<<<< HEAD
 					System.out.println("totalPagar4: " + totalPagarBillar);
 				}
 			
@@ -533,6 +519,15 @@ public class BillarController {
 					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * minutoFin) / 60;
 					System.out.println("totalPagar5: " + totalPagarBillar);
 					cantidadDePrecios++;
+=======
+				}
+				while (horadespues <= horaFin) {
+					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horadespues).toString()) * 60)/ 60;
+					horadespues++;
+				}
+				if (horaInicio > horaFin) {
+					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * minutoFin) / 60;
+>>>>>>> 81451445b193edcb43e7c58f771b8f7a868386e2
 				}
 				while (horadespues < horaFin) {
 					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horadespues).toString()) * 60)/ 60;
@@ -540,7 +535,6 @@ public class BillarController {
 					System.out.println("totalPagar6: " + totalPagarBillar);
 				}
 			}
-			System.out.println("cantidadDePrecios: " + cantidadDePrecios);
 			double totalPagarTaco = precioUnitarioTaco * cantidadTacos;
 
 			double descuento = 0;
