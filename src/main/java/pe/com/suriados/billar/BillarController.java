@@ -492,6 +492,8 @@ public class BillarController {
 				totalPagarBillar = (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * (minutoFin - minutoInicio)) / 60;
 			}else {
 				totalPagarBillar = (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * (60 - minutoInicio)) / 60;
+				System.out.println("totalPagar1: " + totalPagarBillar);
+				
 			}
 
 			int horaInicio1 = horaInicio + 1;
@@ -509,31 +511,26 @@ public class BillarController {
 				while (horaInicio1 <= 23) {
 					totalPagarBillar = totalPagarBillar	+ (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio1).toString()) * 60) / 60;
 					horaInicio1++;
-<<<<<<< HEAD
-					System.out.println("totalPagar4: " + totalPagarBillar);
+
+					System.out.println("totalPagar3: " + totalPagarBillar);
 				}
 			
 				System.out.println("horasdepues: " + horadespues);
 				System.out.println("horafin: " + horaFin);
 				if (horaInicio > horaFin) {
 					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * minutoFin) / 60;
-					System.out.println("totalPagar5: " + totalPagarBillar);
-					cantidadDePrecios++;
-=======
-				}
-				while (horadespues <= horaFin) {
-					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horadespues).toString()) * 60)/ 60;
-					horadespues++;
-				}
-				if (horaInicio > horaFin) {
-					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * minutoFin) / 60;
->>>>>>> 81451445b193edcb43e7c58f771b8f7a868386e2
+					System.out.println("totalPagar4: " + totalPagarBillar);
+				
+
 				}
 				while (horadespues < horaFin) {
 					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horadespues).toString()) * 60)/ 60;
 					horadespues++;
-					System.out.println("totalPagar6: " + totalPagarBillar);
+					System.out.println("totalPagar5: " + totalPagarBillar);
+					
 				}
+			
+			
 			}
 			double totalPagarTaco = precioUnitarioTaco * cantidadTacos;
 
