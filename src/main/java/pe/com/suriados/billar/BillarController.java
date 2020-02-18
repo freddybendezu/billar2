@@ -524,27 +524,27 @@ public class BillarController {
 				while (horaInicio1 <= 23) {
 					totalPagarBillar = totalPagarBillar	+ (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio1).toString()) * 60) / 60;
 					horaInicio1++;
-					System.out.println("totalPagar3: " + totalPagarBillar);
-				}
-				while (horadespues <= horaFin) {
-					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horadespues).toString()) * 60)/ 60;
-					horadespues++;
 					System.out.println("totalPagar4: " + totalPagarBillar);
 				}
+			
 				System.out.println("horasdepues: " + horadespues);
 				System.out.println("horafin: " + horaFin);
 				if (horaInicio > horaFin) {
 					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horaInicio).toString()) * minutoFin) / 60;
-					System.out.println("totalPagar: " + totalPagarBillar);
+					System.out.println("totalPagar5: " + totalPagarBillar);
 					cantidadDePrecios++;
 				}
-
+				while (horadespues < horaFin) {
+					totalPagarBillar = totalPagarBillar + (Double.parseDouble(billarprecio.getProperty("precio" + horadespues).toString()) * 60)/ 60;
+					horadespues++;
+					System.out.println("totalPagar6: " + totalPagarBillar);
+				}
 			}
 			System.out.println("cantidadDePrecios: " + cantidadDePrecios);
 			double totalPagarTaco = precioUnitarioTaco * cantidadTacos;
 
 			double descuento = 0;
-
+ 
 			if (duracion.getHours() >= numeroHorasParaDescuento) {
 				descuento = (totalPagarBillar * porcentajeDescuento) / 100;
 			}
