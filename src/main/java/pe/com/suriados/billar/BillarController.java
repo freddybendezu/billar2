@@ -306,21 +306,21 @@ public class BillarController {
 		String mesanumero = request.getParameter("mesanumero");
 
 		String tiempo = request.getParameter("tiempo");
-		String inicio = request.getParameter("inicio");
-		String fin = request.getParameter("precio");
-		String minutosnormal = request.getParameter("taco");
-		String minutosincremento = request.getParameter("preciotaco");
-		String minutostotal = request.getParameter("total");
-		String montonormal = request.getParameter("total");
-		String montoincremento = request.getParameter("total");
-		String montotaco = request.getParameter("total");
-		String descuento = request.getParameter("total");
+		//String inicio = request.getParameter("inicio");
+//		String fin = request.getParameter("precio");
+//		String minutosnormal = request.getParameter("taco");
+//		String minutosincremento = request.getParameter("preciotaco");
+//		String minutostotal = request.getParameter("total");
+//		String montonormal = request.getParameter("total");
+//		String montoincremento = request.getParameter("total");
+//		String montotaco = request.getParameter("total");
+//		String descuento = request.getParameter("total");
 		String montototal = request.getParameter("montototal");
 		String taco = request.getParameter("taco");
-		String incremento = request.getParameter("total");
-		String preciotaco = request.getParameter("total");
-		String preciohoranormal = request.getParameter("total");
-		String estado = "libre";
+//		String incremento = request.getParameter("total");
+//		String preciotaco = request.getParameter("total");
+//		String preciohoranormal = request.getParameter("total");
+//		String estado = "libre";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		ZonedDateTime fechaActual = ZonedDateTime.now(ZoneId.of("America/Lima"));
 
@@ -340,7 +340,6 @@ public class BillarController {
 			billar.setProperty("usuario", usuario);
 
 			ds.put(billar);
-			System.out.println("mesa: ");
 			key = KeyFactory.createKey("Billarmesa", Long.parseLong(mesanumero));
 			Entity billarmesa = ds.get(key);
 			billarmesa.setProperty("codigo", "");

@@ -178,9 +178,9 @@ body {
 
 					<tr>
 
-						<td></td>
-						<td></td>
-						<td></td>
+					
+					
+				
 						<td align="right" colspan="3"><b><span id="in_hi"
 								style="font-size: 11px; padding: 3px;">DESCUENTO S/.</span></b></td>
 						<td align="left" colspan="3"><span id="in_descuento"
@@ -190,13 +190,11 @@ body {
 
 
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td align="right" colspan="3"><b><span id="in_hi"
-								style="font-size: 11px; padding: 3px;">TOTAL S/.</span></b></td>
-						<td align="left" colspan="3"><span id="in_mt"
-							style="font-size: 11px; padding: 3px;"><%=billar.getProperty("montototal")%>0</span></td>
+						
+						
+						
+						<td align="right" colspan="3"><b><span id="in_hi" style="font-size: 11px; padding: 3px;">TOTAL S/.</span></b></td>
+						<td align="left" colspan="3"><span id="in_mt" style="font-size: 11px; padding: 3px;"><%=billar.getProperty("montototal")%>0</span></td>
 					</tr>
 
 					<!-- <tr>
