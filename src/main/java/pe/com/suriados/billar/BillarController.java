@@ -552,4 +552,34 @@ public class BillarController {
 
 	}
 
+	
+	@RequestMapping(value = { "/totalcaja" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@ResponseBody
+	public List<String> totalcaja(HttpServletRequest request, ModelMap model) {
+		double montototal=0;
+		String fechaActualFormateado="";
+		try {
+			DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			ZonedDateTime fechaActual = ZonedDateTime.now(ZoneId.of("America/Lima")); 
+			fechaActualFormateado = fechaActual.format(formatter);
+	    	Query queryfine = new Query("Billar").addSort("fin", Query.SortDirection.ASCENDING);
+	    	queryfine.addFilter("fecha", Query.FilterOperator.EQUAL, fechaActual.format(formatter));
+	        List<Entity> billarliste = datastore.prepare(queryfine).asList(FetchOptions.Builder.withDefaults());
+	        for (int i = 0; i < billarliste.size(); i++) {
+	        	montototal+=Double.parseDouble(""+billarliste.get(i).getProperty("montototal"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		List<String> response = new ArrayList<String>();
+		
+		response.add(montototal+"");
+		response.add(fechaActualFormateado);
+		return response;
+	}
+	
+	
 }

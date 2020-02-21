@@ -42,7 +42,7 @@ body {
 				for (Entity e : billarMesaList) {
 			%>
 			<div class="col-md-2">
-				<div class="card text-white bg-success mb-3"
+				<div class="card text-white bg-success xs-3"
 					style="max-width: 18rem;" id="<%=e.getProperty("id")%>">
 					<div class="card-header">
 						<h5>
@@ -272,7 +272,28 @@ function tacos(id, operacion) {
 		})
 }
 
+
+
+
+function fn_totalCaja() {
+	$.ajax({
+		url:'/billar/totalcaja',
+		type:'GET',
+		dataType:'JSON',
+		success:function(response){
+			$('#totalcaja').text('TOTAL CAJA S/.'+response[0]);
+			$('#fechaactual').text(response[1]);
+		}
+	})
+}
+
+
+
+
 $(document).ready(function() {
+				
+				fn_totalCaja();
+	
 				$(".card").each(function(){
 					var id = $(this).attr('id');
 					var estado = $("#estado"+id).val(); 

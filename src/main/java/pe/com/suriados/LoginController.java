@@ -40,7 +40,7 @@ public class LoginController
       Entity persona = datastore.get(key);
       String contrasena1 = (String)persona.getProperty("contrasena");
       String responsabilidad = (String)persona.getProperty("responsabilidad");
-
+      String nombres = (String)persona.getProperty("nombres");
       if (contrasena.equals(contrasena1))
       {
         Cookie cookie = new Cookie("responsabilidad", responsabilidad);
@@ -50,7 +50,6 @@ public class LoginController
         HttpSession oldSession = request.getSession(false);
         if (oldSession != null) {
             oldSession.invalidate();
-            System.out.println("vivo");
         }
         //generate a new session
         HttpSession newSession = request.getSession(true);
@@ -59,17 +58,15 @@ public class LoginController
         newSession.setMaxInactiveInterval(5*60);
         newSession.setAttribute("usuario", dni);
         newSession.setAttribute("validado", true);
-        
+        newSession.setAttribute("nombres", nombres);
         //-----------------
         //return "redirect:../billar/list";
         return "frmBarraAdd";
         
       }
-      System.out.println("Password incorrecto");
     }
     catch (EntityNotFoundException e)
     {
-      System.out.println("No existe");
       e.printStackTrace();
     }
 

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="#">SURIA</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -46,7 +46,10 @@
     </ul>
     
     <ul class="navbar-nav ml-auto">
-    	<li>USUARIO:  <%= session.getAttribute("usuario") %> <a class="navbar-link" href="/logout">CERRAR SESSION</a></li>
+    	<li><button type="button" class="btn btn-danger btn-sm" id="fechaactual">D</button></li>
+    	<li><a class="btn btn-danger btn-sm" href="/billarreporte/frmBillarReporteGral" id="totalcaja">S/</a></li>
+    	<li><button type="button" class="btn btn-success btn-sm"><%= session.getAttribute("nombres") %> </button></li>
+    	<li><a class="btn btn btn-link" href="/logout">CERRAR SESSION</a></li>
     </ul>
          
     
