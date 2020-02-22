@@ -4,24 +4,13 @@
 <html>
 <head>
 <!-- Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<script src="<%=request.getContextPath()%>/js1/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js1/timer.jquery.js"></script>
+
 
 <style type="text/css">
 body {
@@ -32,6 +21,13 @@ body {
 <body>
 
 	<jsp:include page="nav.jsp" />
+	
+		<div class="btn-group btn-group-sm " style="margin-bottom:3px;" role="group" aria-label="Basic example">
+		  <button type="button" class="btn btn-danger" id="fechaactual">Left</button>
+		  <a class="btn btn-danger" href="/billarreporte/frmBillarReporteGral" id="totalcaja">Right</a>
+		</div>
+	
+	
 
 	<div class="container">
 
@@ -41,7 +37,7 @@ body {
 				List<Entity> billarMesaList = (List<Entity>) request.getAttribute("billarmesalist");
 				for (Entity e : billarMesaList) {
 			%>
-			<div class="col-md-2">
+			<div class="col-md-2" style="margin-bottom:3px;" >
 				<div class="card text-white bg-success xs-3"
 					style="max-width: 18rem;" id="<%=e.getProperty("id")%>">
 					<div class="card-header">
@@ -62,10 +58,10 @@ body {
 										class="btn btn-primary start-timer-btn btn-sm"
 										id="<%=e.getProperty("id")%>">Inicio &nbsp;</button>
 								</div>
-								<input type="text" name="horainicio"
+								<input type="text" name="horainicio" required
 									id="horainicio<%=e.getProperty("id")%>"
 									value="<%=e.getProperty("horainicio")%>"
-									class="form-control form-control-sm" readonly>
+									class="form-control form-control-sm" readonly />
 							</div>
 							<div class="input-group card-title">
 								<div class="input-group-btn">
@@ -75,16 +71,16 @@ body {
 										id="<%=e.getProperty("id")%>">Final &nbsp; &nbsp;</button>
 								</div>
 								<input type="text" id="horaactual<%=e.getProperty("id")%>"
-									class="form-control form-control-sm" readonly>
+									class="form-control form-control-sm" readonly />
 							</div>
 							
 							
 							<div class="input-group card-title">
 								<div class="input-group-btn">
-									<button type="submit" name="save" class="btn btn-danger btn-sm">Guardar</button>
+									<button type="submit" name="save" id="btn-guardar" class="btn btn-danger btn-sm btn-guardar">Guardar</button>
 								</div>
-								<input type="text" id="total<%=e.getProperty(	"id")%>"
-									class="form-control form-control-sm" readonly>
+								<input type="text" id="total<%=e.getProperty("id")%>"
+									class="form-control form-control-sm" readonly />
 							</div>
 							<div class="input-group card-title">
 								<input type="text" name="taco" id="taco<%=e.getProperty("id")%>"
@@ -151,7 +147,20 @@ body {
 
 </body>
 </html>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script src="<%=request.getContextPath()%>/js1/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js1/timer.jquery.js"></script>	
+	
 <script>
 
 function initializeClock(id) {
@@ -223,16 +232,15 @@ function registrar(id) {
 			inicio:$("#inicio"+id).val(),
 			tiempo:$("#tiempo"+id).val(),
 			precio:$("#precio"+id).val(),
-			taco:$("#taco"+id).val(),
+			//taco:$("#taco"+id).val(),
 			mesanumeroorden:$("#mesanumeroorden"+id).text(),
 			estado:"ocupado"
 		},
 		 
 		success:function(response){
-			console.log("Exito");
 			var codigo = document.getElementById('codigo' + id);
-			$('#codigo' + id).val(response[0]);
-			$('#estado' + id).val("ocupado");
+			$('#codigo'+id).val(response[0]);
+			$('#estado'+id).val("ocupado");
 		}
 	})
 }
@@ -288,8 +296,6 @@ function fn_totalCaja() {
 }
 
 
-
-
 $(document).ready(function() {
 				
 				fn_totalCaja();
@@ -311,7 +317,6 @@ $(document).ready(function() {
 						initializeClock(id);
 						registrar(id);
 					}
-				
 				});
 				
 				

@@ -46,10 +46,8 @@
     </ul>
     
     <ul class="navbar-nav ml-auto">
-    	<li><button type="button" class="btn btn-danger btn-sm" id="fechaactual">D</button></li>
-    	<li><a class="btn btn-danger btn-sm" href="/billarreporte/frmBillarReporteGral" id="totalcaja">S/</a></li>
     	<li><button type="button" class="btn btn-success btn-sm"><%= session.getAttribute("nombres") %> </button></li>
-    	<li><a class="btn btn btn-link" href="/logout">CERRAR SESSION</a></li>
+    	<li><a class="nav-link" href="/logout">CERRAR SESSION</a></li>
     </ul>
          
     
