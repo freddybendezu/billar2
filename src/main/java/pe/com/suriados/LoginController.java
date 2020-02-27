@@ -40,11 +40,14 @@ public class LoginController
       Entity persona = datastore.get(key);
       String contrasena1 = (String)persona.getProperty("contrasena");
       String responsabilidad = (String)persona.getProperty("responsabilidad");
+      String tienda = (String)persona.getProperty("tienda");
       String nombres = (String)persona.getProperty("nombres");
       if (contrasena.equals(contrasena1))
       {
         Cookie cookie = new Cookie("responsabilidad", responsabilidad);
+        Cookie cookie1= new Cookie("tienda", tienda);
         response.addCookie(cookie);
+        response.addCookie(cookie1);
         
         //Registro de sesion
         HttpSession oldSession = request.getSession(false);

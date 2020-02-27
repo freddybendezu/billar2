@@ -25,19 +25,28 @@ public class PersonaController
 {
   @RequestMapping(value={"/frmPersona"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
   public String getAddCustomerPage(ModelMap model)
-  {
+  { 	
+	  DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+	  
+	  Query query = new Query("Barra").addSort("nombre", Query.SortDirection.DESCENDING);
+	  List<Entity> barra = ds.prepare(query).asList(FetchOptions.Builder.withDefaults());
+	    
+	  model.addAttribute("barraList",  barra);
     return "frmPersonaAdd";
   }
 
   @RequestMapping(value={"/add"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
   public ModelAndView add(HttpServletRequest request, ModelMap model)
   {
+
+	
     String dni = request.getParameter("dni");
     String contrasena = request.getParameter("contrasena");
     String nombres = request.getParameter("nombres");
     String direccion = request.getParameter("direccion");
     String telefono = request.getParameter("telefono");
     String responsabilidad = request.getParameter("responsabilidad");
+    String tienda = request.getParameter("tienda");
 
     Date date = new Date();
     DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
@@ -52,6 +61,7 @@ public class PersonaController
     persona.setProperty("telefono", telefono);
     persona.setProperty("fecha", fecha);
     persona.setProperty("responsabilidad", responsabilidad);
+    persona.setProperty("tienda", tienda);
 
     ds.put(persona);
 
@@ -62,7 +72,10 @@ public class PersonaController
   public String getUpdateCustomerPage(@PathVariable String dni, HttpServletRequest request, ModelMap model)
   {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
+  
+	  Query query = new Query("Barra").addSort("nombre", Query.SortDirection.DESCENDING);
+	  List<Entity> barra = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+	 
     Key key = KeyFactory.createKey("Persona", Long.parseLong(dni));
     try
     {
@@ -71,21 +84,24 @@ public class PersonaController
     } catch (EntityNotFoundException e) {
       e.printStackTrace();
     }
-
+    
+    model.addAttribute("barraList",  barra);
     return "frmPersonaUpdate";
   }
 
   @RequestMapping(value={"/update"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
   public ModelAndView update(HttpServletRequest request, ModelMap model)
   {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	  DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	  
     String dni = request.getParameter("dni");
     String contrasena = request.getParameter("contrasena");
     String nombres = request.getParameter("nombres");
     String direccion = request.getParameter("direccion");
     String telefono = request.getParameter("telefono");
     String responsabilidad = request.getParameter("responsabilidad");
-
+    String tienda = request.getParameter("tienda");
+    
     Date date = new Date();
     DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
     String fecha = hourdateFormat.format(date);
@@ -98,6 +114,7 @@ public class PersonaController
     persona.setProperty("telefono", telefono);
     persona.setProperty("fecha", fecha);
     persona.setProperty("responsabilidad", responsabilidad);
+    persona.setProperty("tienda", tienda);
 
     datastore.put(persona);
 
@@ -121,9 +138,10 @@ public class PersonaController
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Query query = new Query("Persona").addSort("fecha", Query.SortDirection.DESCENDING);
     List<Entity> persona = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(10));
-
+    
+ 
     model.addAttribute("personaList", persona);
-
+   
     return "frmPersonaList";
   }
 }

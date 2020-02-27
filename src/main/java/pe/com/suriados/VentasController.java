@@ -48,6 +48,7 @@ public class VentasController {
 		String fecha = request.getParameter("fecha");
 		String barra = request.getParameter("barra");
 		String usuario = request.getParameter("usuario");
+		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Query query = new Query("ProductoVenta").addSort("codigoBarra", Query.SortDirection.ASCENDING);
 		query.addFilter("fechaventa", Query.FilterOperator.EQUAL, fecha);

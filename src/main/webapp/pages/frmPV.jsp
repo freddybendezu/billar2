@@ -273,6 +273,7 @@ $(document).ready(function(){
           });
           
           tmpCodigoBarra = $("#barra").val();
+          tmpTienda = $("#tienda").val();
           tmpTotal = $("#total").val();
           console.log(tmpTotal);
           tmpCodigoProducto = tmpCodigoProducto.substring(0,tmpCodigoProducto.length - 1);
@@ -288,6 +289,7 @@ $(document).ready(function(){
                         data: {
                             flag: '1',
                             tmpCodigoBarra: tmpCodigoBarra,
+                            tmpTienda: tmpTienda,
                             tmpPrecioProducto: tmpPrecioProducto,
                             tmpCodigoProducto: tmpCodigoProducto,
                             tmpBarCode: tmpBarCode,

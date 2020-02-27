@@ -42,7 +42,7 @@
 				<td><%=e.getProperty("nombres")%></td>
 				<td><%=e.getProperty("direccion")%></td>
 				<td><%=e.getProperty("telefono")%></td>
-				<td><%=e.getProperty("responsabilidad")%></td>
+				<td><%=e.getProperty("tienda")%></td>
 				<td>
 					<a href="update/<%=e.getKey().getId()%>" title="Editar datos" class="btn btn-primary btn-sm">Editar</a>
 					<a href="delete/<%=e.getKey().getId()%>"title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm">Eliminar</a>

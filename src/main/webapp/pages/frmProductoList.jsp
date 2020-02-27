@@ -380,7 +380,7 @@ $(document).ready(function(){
      
 		$('#listaProducto').DataTable(); 
 	
-});
+})
 
 
 

@@ -73,7 +73,7 @@ body {
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Codigo de Barra</th>
+							<th>Tienda</th>
 							<th>Usuario</th>
 							<th>Fecha de Venta</th>
 							<th>Hora de Venta</th>
@@ -130,7 +130,7 @@ $(document).on('click',	'#btnbuscar', function(event) {
 						monto=monto+parseFloat(response.productoVentaList[x].properties.total);
 						var nuevaFila = "<tr>"
 							+"<td>"+x+"</td>"
-							+"<td>"+response.productoVentaList[x].properties.codigoBarra + "</td>"
+							+"<td>"+response.productoVentaList[x].properties.tienda + "</td>"
 							+"<td>"+response.productoVentaList[x].properties.usuarioventa + "</td>"
 							+"<td>"+response.productoVentaList[x].properties.fechaventa + "</td>"
 							+"<td>"+response.productoVentaList[x].properties.horaventa + "</td>"

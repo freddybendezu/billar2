@@ -106,11 +106,15 @@ public class CajaController
   {
     Cookie[] cookies = request.getCookies();
     String barra = null;
+    String tienda = null;
     if (cookies != null) {
       for (Cookie cookie : cookies) {
         if (cookie.getName().equals("responsabilidad")) {
           barra = cookie.getValue();
         }
+        if (cookie.getName().equals("tienda")) {
+            tienda = cookie.getValue();
+          }
       }
     }
     
@@ -123,6 +127,7 @@ public class CajaController
 	ZonedDateTime fechaActual = ZonedDateTime.now(ZoneId.of("America/Lima"));
 	
     String tmpCodigoBarra = barra;
+    String tmpTienda= tienda;
     String tmpCodigoProducto = request.getParameter("tmpCodigoProducto");
     String tmpNombreProducto = request.getParameter("tmpNombreProducto");
     String tmpPrecioProducto = request.getParameter("tmpPrecioProducto");
@@ -143,6 +148,7 @@ public class CajaController
     {
       Entity productoVenta = new Entity("ProductoVenta");
       productoVenta.setProperty("codigoBarra", tmpCodigoBarra);
+      productoVenta.setProperty("tienda", tmpTienda);      
       productoVenta.setProperty("fechaventa", fechaActual.format(formatoFecha));
       productoVenta.setProperty("horaventa", fechaActual.format(formatoHora));
       productoVenta.setProperty("usuarioventa", usuario);
@@ -156,7 +162,6 @@ public class CajaController
         query.addFilter("codigoProducto", Query.FilterOperator.EQUAL, codigoProducto[i]);
         PreparedQuery pq = ds.prepare(query);
         Entity productoBarra = pq.asSingleEntity();
-        System.out.println(i);
         int totalUnidades = Integer.parseInt(productoBarra.getProperty("totalUnidades").toString()) - Integer.parseInt(cantidadProducto[i]);
         productoBarra.setProperty("totalUnidades", Integer.valueOf(totalUnidades));
         ds.put(productoBarra);
