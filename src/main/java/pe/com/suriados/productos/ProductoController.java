@@ -127,7 +127,12 @@ public class ProductoController {
 		int totalUnidades = Integer.parseInt(request.getParameter("nroUnidadesCompradas1"))
 				+ Integer.parseInt(request.getParameter("nroUnidadesCompradas"));
 		String precioXCaja = request.getParameter("precioXCaja");
-
+		String precioVentaUnitarioxMenor = request.getParameter("precioVentaUnitarioxMenor");
+		String precioVentaUnitarioxMayor = request.getParameter("precioVentaUnitarioxMayor");
+		String cantidadParaPrecioUnitarioxMayor = request.getParameter("cantidadParaPrecioUnitarioxMayor");
+		
+		
+		
 		Date date = new Date();
 		DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 		String fecha = hourdateFormat.format(date);
@@ -148,7 +153,9 @@ public class ProductoController {
 			producto.setProperty("precioXCaja", precioXCaja);
 			producto.setProperty("precioXUnidad", Double.valueOf(precioXUnidad));
 			producto.setProperty("totalUnidades", Integer.valueOf(totalUnidades1));
-
+			producto.setProperty("PrecioVentaUnitarioxMenor", precioVentaUnitarioxMenor);
+			producto.setProperty("PrecioVentaUnitarioxMayor", precioVentaUnitarioxMayor);
+			producto.setProperty("cantidadParaPrecioUnitarioxMayor", cantidadParaPrecioUnitarioxMayor);
 			datastore.put(producto);
 
 			Entity productoHistorial = new Entity("ProductoHistorial");
@@ -162,6 +169,10 @@ public class ProductoController {
 			productoHistorial.setProperty("precioXCaja", precioXCaja);
 			productoHistorial.setProperty("precioXUnidad", Double.valueOf(precioXUnidad));
 			productoHistorial.setProperty("totalUnidades", Integer.valueOf(totalUnidades1));
+			productoHistorial.setProperty("PrecioVentaUnitarioxMenor", precioVentaUnitarioxMenor);
+			productoHistorial.setProperty("PrecioVentaUnitarioxMayor", precioVentaUnitarioxMayor);
+			productoHistorial.setProperty("cantidadParaPrecioUnitarioxMayor", cantidadParaPrecioUnitarioxMayor);
+			
 			productoHistorial.setProperty("fecha", fecha);
 			datastore.put(productoHistorial);
 

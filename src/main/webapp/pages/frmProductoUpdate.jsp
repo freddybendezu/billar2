@@ -99,10 +99,48 @@
 						name="precioXCaja" id="precioXCaja"
 						value="<%=producto.getProperty("precioXCaja")%>"
 						class="form-control" 
-						placeholder="Teléfono"
+						placeholder="precioXCaja"
 						required>
 					</div>
-				</div>									
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Precio venta unit x menor</label>
+					<div class="col-sm-3">
+						<input type="text"
+						name="precioVentaUnitarioxMenor" id="precioVentaUnitarioxMenor"
+						value="<%=producto.getProperty("PrecioVentaUnitarioxMenor")%>"
+						class="form-control" 
+						placeholder="PrecioVentaUnitarioxMenor"
+						required>
+					</div>
+				</div>	
+				
+				
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Precio venta unit x mayor</label>
+					<div class="col-sm-3">
+						<input type="text"
+						name="precioVentaUnitarioxMayor" id="PrecioVentaUnitarioxMayor"
+						value="<%=producto.getProperty("PrecioVentaUnitarioxMayor")%>"
+						class="form-control" 
+						placeholder="precioVentaUnitarioxMayor"
+						required>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Cantidad para precio unitario x mayor</label>
+					<div class="col-sm-3">
+						<input type="text"
+						name="cantidadParaPrecioUnitarioxMayor" id="cantidadParaPrecioUnitarioxMayor"
+						value="<%=producto.getProperty("cantidadParaPrecioUnitarioxMayor")%>"
+						class="form-control" 
+						placeholder="cantidadParaPrecioUnitarioxMayor"
+						required>
+					</div>
+				</div>
+													
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">

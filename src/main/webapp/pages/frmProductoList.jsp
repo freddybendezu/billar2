@@ -188,6 +188,14 @@ h1 {
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
+
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+
 <script>
 $(document).ready(function(){
 	
@@ -441,7 +449,7 @@ $(document).ready(function(){
 				},
 				 
 				success:function(response){
-					console.log("Exito");
+					
 					location.reload();						
 				}
 				
@@ -449,7 +457,15 @@ $(document).ready(function(){
      });
      
      
-		$('#listaProducto').DataTable(); 
+		$('#listaProducto').DataTable( {
+	        dom: 'Bfrtip',
+	        buttons: [
+	            'copyHtml5',
+	            'excelHtml5',
+	            'csvHtml5',
+	            'pdfHtml5'
+	        ]
+	    } ); 
 	
 });
 
@@ -462,6 +478,7 @@ $(document).on('click', '#btn-importar', function (event) {
      var data = new FormData(form);
 	
 	
+		
  	$.ajax({
                 type: "POST",
                 url: "/producto/importar",
@@ -481,7 +498,7 @@ $(document).on('click', '#btn-importar', function (event) {
                     }
                 },
                 error: function (result) {
-                    console.log(result.responseText);
+                    
                 }
             });
 
