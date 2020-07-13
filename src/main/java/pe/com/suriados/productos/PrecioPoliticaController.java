@@ -1,4 +1,4 @@
-package pe.com.suriados;
+package pe.com.suriados.productos;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
