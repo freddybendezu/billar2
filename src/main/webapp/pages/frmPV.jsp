@@ -169,7 +169,7 @@ h1 {
 							</tr>
 
 							<tr>
-								<td colspan="2"><span style="color: blue; font-size: 11px;">12-07-2020</span>
+								<td colspan="2"><span style="color: blue; font-size: 11px;" id="fechaventa"></span>
 								</td>
 
 								<td align="right" colspan="2"><span
@@ -252,6 +252,7 @@ h1 {
 	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
 
 <script>
 	$(document)
@@ -558,7 +559,7 @@ h1 {
 			.click(
 					function() {
 						$("#detalle tr").remove();
-
+						$("#fechaventa").text(moment().format('YYYY-MM-DD hh:mm:ss'));
 						$('#listaProductoBarra tbody tr')
 								.each(
 										function() {

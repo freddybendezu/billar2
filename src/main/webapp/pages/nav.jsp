@@ -40,7 +40,7 @@
 			<a class="dropdown-item" href="/persona/list">PERSONAS</a>
 			<a class="dropdown-item" href="/barra/list">TIENDAS</a>
 			<a class="dropdown-item" href="/billar/billarmesalist">MESAS</a>
-			<a class="dropdown-item" href="/barraPersona/list">RESPONSABLES	(*)</a>
+<!-- 			<a class="dropdown-item" href="/barraPersona/list">RESPONSABLES	(*)</a> -->
         </div>
       </li>
     </ul>

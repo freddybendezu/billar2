@@ -8,13 +8,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
@@ -61,5 +65,21 @@ public class VentasController {
 	    List<Entity> productoVenta = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
 		model.addAttribute("productoVentaList", productoVenta);
 		return model;
+	}
+
+	@RequestMapping(value = { "/reporte/ventasdetalle/{id}" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public @ResponseBody ModelMap reporteventasdetalle(@PathVariable String id, HttpServletRequest request, ModelMap model) {
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+	    try{
+	    	Key key = KeyFactory.createKey("ProductoVenta", Long.parseLong(id));
+	    	Query query = new Query("ProductoVentaDetalle").setAncestor(key);
+		    List<Entity> productoVentaDetalleList = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+	    	model.addAttribute("productoVentaDetalleList", productoVentaDetalleList);
+	    }catch (Exception e) {
+	      
+	    }
+	    return model;
 	}	
+
 }

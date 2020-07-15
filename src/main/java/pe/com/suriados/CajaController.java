@@ -166,6 +166,7 @@ public class CajaController
         productoBarra.setProperty("totalUnidades", Integer.valueOf(totalUnidades));
         ds.put(productoBarra);
         Entity productoVentaDetalle = new Entity("ProductoVentaDetalle", productoVenta.getKey());
+        productoVentaDetalle.setProperty("codigoVenta", productoVenta.getKey().getId());
         productoVentaDetalle.setProperty("codigoProducto", codigoProducto[i]);
         productoVentaDetalle.setProperty("nombreProducto", nombreProducto[i]);
         productoVentaDetalle.setProperty("cantidadProducto", cantidadProducto[i]);
