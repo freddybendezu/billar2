@@ -29,75 +29,73 @@ h1 {
 	<jsp:include page="nav.jsp" />
 	<div class="container">
 		<div class="content">
-			<h4>ALMACEN</h4>
-			<a href="frmProducto">AGREGAR PRODUCTO</a>
+			<div class="row">
+				<div class="col-sm-12">
+					<h4>ALMACEN</h4>
+					<a href="frmProducto">AGREGAR PRODUCTO</a>
+					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#miModal">Importar de excel</button>
+				</div>
+			</div>
 
+			
 
-			<button type="button" class="btn btn-primary btn-sm"
-				data-toggle="modal" data-target="#miModal">Importar de
-				excel</button>
+<!-- 					<div class="table-responsive"> -->
+			<div class="row">
+				<div class="col-sm-12">
+					<table class="table table-striped table-hover table-bordered" width="99%" id="listaProducto">
+						<thead>
+							<tr>
+								<th>CATEGORIA</th>
+								<th>BARCODE</th>
+								<th>PRODUCTO</th>
+								<th>UNID X CAJAS</th>
+								<th>CAJAS COMP</th>
+								<th>UNID COMP</th>
+								<th>PREC COMP X CAJA</th>
+								<th>PREC COMP X UNID</th>
+								<th>PREC VENTA UNIT X MENOR</th>
+								<th>PREC VENTA UNIT X MAYOR</th>
+								<th>CANT PARA PREC UNIT X MAYOR</th>
+								<th style="width: 155px;">ACCION</th>
+								<th style="display: none;">CODIGO</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								List<Entity> productos = (List<Entity>) request.getAttribute("productoList");
+								for (Entity e : productos) {
+							%>
 
-			<!-- 		<div class="table-responsive"> -->
-			<table class="table table-striped table-hover table-bordered"
-				id="listaProducto">
-				<thead>
-
-					<tr>
-						<th>Categoria</th>
-						<th>BarCode</th>
-						<th>Producto</th>
-						<th>Unid. x caja</th>
-						<th>Cajas</th>
-						<th>Unidades</th>
-						<th>Precio x caja</th>
-						<th>Precio x unidad</th>
-						<th>Precio Venta Unit x menor</th>
-						<th>Precio Venta Unit x mayor</th>
-						<th>cantidad Para Precio Unitario x Mayor</th>
-						<th style="width: 155px;">Accion</th>
-						<th style="display: none;">Codigo</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						List<Entity> productos = (List<Entity>) request.getAttribute("productoList");
-						for (Entity e : productos) {
-					%>
-
-					<tr>
-						<td id="codigoCategoria"><%=e.getProperty("codigoCategoria")%></td>
-						<td id="barCode"><%=e.getProperty("barCode")%></td>
-						<td id="nombreProducto"><%=e.getProperty("nombreProducto")%></td>
-						<td id="unidadesXCaja"><%=e.getProperty("unidadesXCaja")%></td>
-						<td id="nroCajasCompradas"><%=e.getProperty("nroCajasCompradas")%></td>
-						<td id="nroUnidadesCompradas"><%=e.getProperty("nroUnidadesCompradas")%></td>
-						<td id="precioXCaja"><%=e.getProperty("precioXCaja")%></td>
-						<td id="precioXUnidad"><%=e.getProperty("precioXUnidad")%></td>
-						<td id="precioVentaUnitxMenor"><%=e.getProperty("PrecioVentaUnitarioxMenor")%></td>
-						<td id="precioVentaUnitxMayor"><%=e.getProperty("PrecioVentaUnitarioxMayor")%></td>
-						<td id="cantidadParaPrecioUnitarioxMayor"><%=e.getProperty("cantidadParaPrecioUnitarioxMayor")%></td>
-						
-						<td><a href="update/<%=e.getKey().getId()%>"
-							title="Editar datos" class="btn btn-primary btn-sm"><i
-								class='fa fa-edit'></i></a> <a href="delete/<%=e.getKey().getId()%>"
-							title="Eliminar"
-							onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')"
-							class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a> <a
-							href='#' title='Cajas' class='btn btn-danger btn-sm'
-							id='btnCajas'><i class='fa fa-plus'></i></a> <a href='#'
-							title='unidades' class='btn btn-danger btn-sm' id='btnUnidades'><i
-								class='fa fa-plus'></i></a> <a
-							href="/precioPolitica/update/<%=e.getKey().getId()%>"
-							title="Precios de venta" class="btn btn-primary btn-sm"><i
-								class='fa fa-edit'></i></a></td>
-						<td id="codigoProducto" style="display: none;"><%=e.getKey().getId()%></td>
-					</tr>
-					<%
-						}
-					%>
-				</tbody>
-			</table>
-			<!-- 		</div> -->
+							<tr>
+								<td id="codigoCategoria"><%=e.getProperty("codigoCategoria")%></td>
+								<td id="barCode"><%=e.getProperty("barCode")%></td>
+								<td id="nombreProducto"><%=e.getProperty("nombreProducto")%></td>
+								<td id="unidadesXCaja"><%=e.getProperty("unidadesXCaja")%></td>
+								<td id="nroCajasCompradas"><%=e.getProperty("nroCajasCompradas")%></td>
+								<td id="nroUnidadesCompradas"><%=e.getProperty("nroUnidadesCompradas")%></td>
+								<td id="precioXCaja"><%=e.getProperty("precioXCaja")%></td>
+								<td id="precioXUnidad"><%=e.getProperty("precioXUnidad")%></td>
+								<td id="precioVentaUnitxMenor"><%=e.getProperty("PrecioVentaUnitarioxMenor")%></td>
+								<td id="precioVentaUnitxMayor"><%=e.getProperty("PrecioVentaUnitarioxMayor")%></td>
+								<td id="cantidadParaPrecioUnitarioxMayor"><%=e.getProperty("cantidadParaPrecioUnitarioxMayor")%></td>
+								
+								<td><a href="update/<%=e.getKey().getId()%>" title="Editar datos" class="btn btn-primary btn-sm"><i	class='fa fa-edit'></i></a>
+									<a href="delete/<%=e.getKey().getId()%>" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm"><i class='fa fa-trash'></i></a>
+									<a href='#' title='Cajas' class='btn btn-danger btn-sm' id='btnCajas'><i class='fa fa-plus'></i></a> 
+									<a href='#' title='unidades' class='btn btn-danger btn-sm' id='btnUnidades'><i class='fa fa-plus'></i></a>
+									<a href="/precioPolitica/update/<%=e.getKey().getId()%>" title="Precios de venta" class="btn btn-primary btn-sm"><i class='fa fa-edit'></i></a>
+								</td>
+								<td id="codigoProducto" style="display: none;"><%=e.getKey().getId()%></td>
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
+			
+				</div>
+			</div>
+<!-- 					</div> -->
 
 			<hr />
 
@@ -197,6 +195,17 @@ h1 {
 
 
 <script>
+
+$('#listaProducto').DataTable( {
+    dom: 'Bfrtip',
+    buttons: [
+        'copyHtml5',
+        'excelHtml5',
+        'csvHtml5',
+        'pdfHtml5'
+    ]
+} ); 
+
 $(document).ready(function(){
 	
 	$(document).on('click', '#btnCajas', function (event) {
@@ -284,7 +293,7 @@ $(document).ready(function(){
         var unidades = 1;
         var codigo = $(this).parents("tr").find("td")[12].innerHTML;
         var nuevaFila = "<tr><td id='tmpbarcode' name='tmpbarcode'>" + barcode + 
-        "<td id='tmpproducto' name='tmpproducto'>" + producto +
+        				"<td id='tmpproducto' name='tmpproducto'>" + producto +
         				"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
         				"</td><td id='tmpunidades' name='tmpunidades'>" + unidades + 
         				"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><i class='fa fa-trash'></i></a>" + 
@@ -337,7 +346,7 @@ $(document).ready(function(){
 		cajas = parseInt(cajas)+parseInt(cajasTotal);
 		unidades = parseInt(unidades)+parseInt(unidadesTotal);
 	    var nuevaFila1 = "<td id='tmpbarcode' name='tmpbarcode'>" + barcode + 
-	    "<td id='tmpproducto' name='tmpproducto'>" + producto +
+	    				"<td id='tmpproducto' name='tmpproducto'>" + producto +
 						"</td><td id='tmpcajas' name='tmpcajas'>" + cajas + 
 						"</td><td id='tmpunidades' name='tmpunidades'>" + unidades + 
 						"</td><td><a href='#' title='Eliminar' class='btn btn-danger btn-sm' id='btnQuitar'><i class='fa fa-trash'></i></a>" + 
@@ -456,16 +465,6 @@ $(document).ready(function(){
 			});	     
      });
      
-     
-		$('#listaProducto').DataTable( {
-	        dom: 'Bfrtip',
-	        buttons: [
-	            'copyHtml5',
-	            'excelHtml5',
-	            'csvHtml5',
-	            'pdfHtml5'
-	        ]
-	    } ); 
 	
 });
 
